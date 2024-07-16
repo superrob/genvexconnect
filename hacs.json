@@ -1,0 +1,5 @@
+{
+  "name": "Genvex Connect",
+  "render_readme": true,
+  "iot_class": "Local Polling"
+}

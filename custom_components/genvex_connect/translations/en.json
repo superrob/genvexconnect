@@ -1,0 +1,107 @@
+{
+  "config": {
+    "abort": {
+      "no_devices": "No Genvex Connect devices found on the network.",
+      "unsupported_model": "The controller model reported is not supported by this addon."
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the device.",
+      "invalid_auth": "Invalid email, please check your email is exactly the same as used in the Genvex Connect app.",
+      "unknown": "Unexpected error"
+    },
+    "step": {
+      "pick": {
+        "title": "Genvex Connect Setup",
+        "description": "Please select your Genvex Connect enabled device below.",
+        "data": {
+          "deviceID": "Device ID"
+        }
+      },
+      "email": {
+        "title": "Genvex Connect Setup",
+        "description": "Please provide the email used for the Genvex Connect app.",
+        "data": {
+          "authenticatedEmail": "Email"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "bypass_active": {
+        "name": "Bypass active"
+      }
+    },
+    "climate": {
+      "ventilation": {
+        "name": "Ventilation"
+      }
+    },
+    "sensor": {
+      "temp_supply": {
+        "name": "Temperature Supply air"
+      },
+      "temp_outside": {
+        "name": "Temperature Outside air"
+      },
+      "temp_extract": {
+        "name": "Temperature Extract air"
+      },
+      "temp_exhaust": {
+        "name": "Temperature Exhaust air"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "fan_speed_supply": {
+        "name": "Fan Speed Supply"
+      },
+      "fan_speed_extract": {
+        "name": "Fan Speed Extract"
+      },
+      "filter_days": {
+        "name": "Days since filter change"
+      },
+      "filter_months": {
+        "name": "Months since filter change"
+      }      
+    },
+    "switch": {
+      "humidity_control": {
+        "name": "Humidity Control"
+      },
+      "reheating": {
+        "name": "Reheating"
+      }
+    },
+    "number": {
+      "bypass_openoffset": {
+        "name": "Bypass offset"
+      },
+      "supply_air_level1": {
+        "name": "Supply air - Level 1"
+      },
+      "supply_air_level2": {
+        "name": "Supply air - Level 2"
+      },
+      "supply_air_level3": {
+        "name": "Supply air - Level 3"
+      },
+      "supply_air_level4": {
+        "name": "Supply air - Level 4"
+      },
+      "extract_air_level1": {
+        "name": "Extract Air - Level 1"
+      },
+      "extract_air_level2": {
+        "name": "Extract Air - Level 2"
+      },
+      "extract_air_level3": {
+        "name": "Extract Air - Level 3"
+      },
+      "extract_air_level4": {
+        "name": "Extract Air - Level 4"
+      }
+    }
+  }
+}

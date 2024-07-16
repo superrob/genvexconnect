@@ -1,0 +1,107 @@
+{
+  "config": {
+    "abort": {
+      "no_devices": "Der blev ikke fundet nogen Genvex Connect enheder på dit netværk",
+      "unsupported_model": "Den rapporterede controller model er ikke understøttet"
+    },
+    "error": {
+      "cannot_connect": "Kunne ikke forbinde til enheden",
+      "invalid_auth": "Ugyldig email, tjek at din email er indtastet præcis som i Genvex Connect appen",
+      "unknown": "Ukendt fejl"
+    },
+    "step": {
+      "pick": {
+        "title": "Genvex Connect Opsætning",
+        "description": "Vælg din Genvex Connect enhed herunder",
+        "data": {
+          "deviceID": "Enheds ID"
+        }
+      },
+      "email": {
+        "title": "Genvex Connect Opsætning",
+        "description": "Indtast den email du bruger i Genvex Connect appen",
+        "data": {
+          "authenticatedEmail": "Email"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "bypass_active": {
+        "name": "Bypass aktiv"
+      }
+    },
+    "climate": {
+      "ventilation": {
+        "name": "Ventilation"
+      }
+    },
+    "sensor": {
+      "temp_supply": {
+        "name": "Temperatur Tilluft"
+      },
+      "temp_outside": {
+        "name": "Temperatur Udeluft"
+      },
+      "temp_extract": {
+        "name": "Temperatur Fraluft"
+      },
+      "temp_exhaust": {
+        "name": "Temperatur Afkastluft"
+      },
+      "humidity": {
+        "name": "Luftfugtighed"
+      },
+      "fan_speed_supply": {
+        "name": "Ventilator Hastighed Tilluft"
+      },
+      "fan_speed_extract": {
+        "name": "Ventilator Hastighed Fraluft"
+      },
+      "filter_days": {
+        "name": "Dage siden filter skift"
+      },
+      "filter_months": {
+        "name": "Måneder siden filter skift"
+      }
+    }, 
+    "switch": {
+      "humidity_control": {
+        "name": "Fugtstyring"
+      },
+      "reheating": {
+        "name": "Eftervarme"
+      }
+    },
+    "number": {      
+      "bypass_openoffset": {
+        "name": "Bypass offset"
+      },
+      "supply_air_level1": {
+        "name": "Tilluft - Level 1"
+      },
+      "supply_air_level2": {
+        "name": "Tilluft - Level 2"
+      },
+      "supply_air_level3": {
+        "name": "Tilluft - Level 3"
+      },
+      "supply_air_level4": {
+        "name": "Tilluft - Level 4"
+      },
+      "extract_air_level1": {
+        "name": "Fraluft - Level 1"
+      },
+      "extract_air_level2": {
+        "name": "Fraluft - Level 2"
+      },
+      "extract_air_level3": {
+        "name": "Fraluft - Level 3"
+      },
+      "extract_air_level4": {
+        "name": "Fraluft - Level 4"
+      }
+    }
+  }
+}

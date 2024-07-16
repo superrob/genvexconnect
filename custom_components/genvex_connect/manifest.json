@@ -1,0 +1,16 @@
+{
+  "domain": "genvex_connect",
+  "name": "Genvex Connect",
+  "version": "0.1.1",
+  "codeowners": [
+    "@superrob"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/genvex_connect",
+  "homekit": {},
+  "iot_class": "local_push",
+  "requirements": ["genvexnabto==0.1.1"],
+  "ssdp": [],
+  "zeroconf": []
+}
