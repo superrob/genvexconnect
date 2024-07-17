@@ -52,6 +52,7 @@ class GenvexConnectEntityBase(Entity):
             "identifiers": {(DOMAIN, self.genvexNabto._device_id)},
             "name": self.genvexNabto._device_id,
             "manufacturer": self.genvexNabto._model_adapter.getManufacturer(),
-            "model": self.genvexNabto._model_adapter.getModelName()
+            "model": self.genvexNabto._model_adapter.getModelName(),
+            "hw_version": f"M: {self.genvexNabto._device_model}, SD: {self.genvexNabto._slavedevice_number}, SDM: {self.genvexNabto._slavedevice_model}"
         }
         return info
