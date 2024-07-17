@@ -29,6 +29,10 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT):
         new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT)) 
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_SUPPLY):
+        new_entities.append(GenvexConnectSensorRPM(genvexNabto, GenvexNabtoDatapointKey.RPM_SUPPLY))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_EXTRACT):
+        new_entities.append(GenvexConnectSensorRPM(genvexNabto, GenvexNabtoDatapointKey.RPM_EXTRACT)) 
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS, "d"))    
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_MONTHS):
@@ -69,6 +73,19 @@ class GenvexConnectSensorDutycycle(GenvexConnectEntityBase, SensorEntity):
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = "%"
         self._attr_state_class = SensorStateClass.MEASUREMENT
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = f"{self._genvexNabto.getValue(self._valueKey)}"
+
+class GenvexConnectSensorRPM(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, valueKey, valueKey)
+        self._genvexNabto = genvexNabto
+        self._valueKey = valueKey
+        self._attr_native_unit_of_measurement = "rpm"
+        self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_suggested_display_precision = 0
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""

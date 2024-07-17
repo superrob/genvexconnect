@@ -59,6 +59,12 @@
       "fan_speed_extract": {
         "name": "Ventilator Hastighed Fraluft"
       },
+      "fan_rpm_supply": {
+        "name": "Ventilator RPM Tilluft"
+      },
+      "fan_rpm_extract": {
+        "name": "Ventilator RPM Fraluft"
+      },
       "filter_days": {
         "name": "Dage siden filter skift"
       },

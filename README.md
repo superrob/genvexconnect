@@ -5,17 +5,19 @@ The integrationen uses my own libary [GenvexNabto](https://github.com/superrob/g
 This integration needs the user to have an Genvex Connect or Nilan gateway connected to their device or own the newer Optima devices, which already have integrated gateways.
 
 ### Supported controller models
-|Controller     | Gateway requiured     | Supported       | Tested  |
-|--------------:|:---------------------:|:---------------:|:-------:|
-|Optima 250     | Yes, internet gateway | Should work     |         |
-|Optima 251     | Yes, internet gateway | ✅              | ✅      |
-|Optima 260     | Yes, internet gateway | Should work     |         |
-|Optima 270     | Built in              | ✅              | ✅     |
-|Optima 301     | Yes, internet gateway | Should work     |         |
-|Optima 312     | Yes, internet gateway | Should work     |         |
-|Optima 314     | Built in              | Should work     |         |
-|Nilan CTS400   | Yes, nilan gateway    | ✅              | ✅     |
-|Nilan CTS602   | Yes, nilan gateway    | Not implemented |         |
+|Controller         | Gateway requiured     | Supported       | Tested  |
+|------------------:|:---------------------:|:---------------:|:-------:|
+|Optima 250         | Yes, internet gateway | Should work     |         |
+|Optima 251         | Yes, internet gateway | ✅              | ✅      |
+|Optima 260         | Yes, internet gateway | Should work     |         |
+|Optima 270         | Built in              | ✅              | ✅     |
+|Optima 301         | Yes, internet gateway | Should work     |         |
+|Optima 312         | Yes, internet gateway | Should work     |         |
+|Optima 314         | Built in              | Should work     |         |
+|Nilan CTS400       | Yes, nilan gateway    | ✅              | ✅     |
+|Nilan CTS602       | Yes, nilan gateway    | EXPERIMENTAL    |         |
+|Nilan CTS602 Light | Yes, nilan gateway    | EXPERIMENTAL    |         |
+|Nilan CTS602 Geo   | Yes, nilan gateway    | Not implemented |         |
 
 ## Installation (HACS)
 

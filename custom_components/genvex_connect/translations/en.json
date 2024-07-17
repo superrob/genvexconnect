@@ -59,6 +59,12 @@
       "fan_speed_extract": {
         "name": "Fan Speed Extract"
       },
+      "fan_rpm_supply": {
+        "name": "Fan RPM Supply"
+      },
+      "fan_rpm_extract": {
+        "name": "Fan RPM Extract"
+      },
       "filter_days": {
         "name": "Days since filter change"
       },
