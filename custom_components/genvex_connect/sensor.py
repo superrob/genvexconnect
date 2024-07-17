@@ -23,6 +23,15 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_OUTSIDE))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EXHAUST):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_EXHAUST))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_CONDENSER):
+        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_CONDENSER))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EVAPORATOR):
+        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_EVAPORATOR))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HOTWATER_TOP):
+        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.HOTWATER_TOP))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HOTWATER_BOTTOM):
+        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.HOTWATER_BOTTOM))
+        
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HUMIDITY):
         new_entities.append(GenvexConnectSensorHumidity(genvexNabto, GenvexNabtoDatapointKey.HUMIDITY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY):

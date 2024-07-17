@@ -50,6 +50,18 @@
       "temp_exhaust": {
         "name": "Temperatur Afkastluft"
       },
+      "temp_condenser": {
+        "name": "Temperatur Kondensator"
+      },
+      "temp_evaporator": {
+        "name": "Temperatur Fordamper"
+      },
+      "hotwater_top": {
+        "name": "Temperatur Varmtvand Top"
+      },
+      "hotwater_bottom": {
+        "name": "Temperatur Varmtvand Bund"
+      },
       "humidity": {
         "name": "Luftfugtighed"
       },

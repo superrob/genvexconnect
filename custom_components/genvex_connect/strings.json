@@ -50,6 +50,18 @@
       "temp_exhaust": {
         "name": "Temperature Exhaust air"
       },
+      "temp_condenser": {
+        "name": "Temperature Condenser"
+      },
+      "temp_evaporator": {
+        "name": "Temperature Evaporator"
+      },
+      "hotwater_top": {
+        "name": "Temperature Hotwater Top"
+      },
+      "hotwater_bottom": {
+        "name": "Temperature Hotwater Bottom"
+      },
       "humidity": {
         "name": "Humidity"
       },
