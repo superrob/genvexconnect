@@ -1,7 +1,7 @@
 {
   "domain": "genvex_connect",
   "name": "Genvex Connect",
-  "version": "0.1.2",
+  "version": "0.1.2.1",
   "codeowners": [
     "@superrob"
   ],
