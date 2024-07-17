@@ -1,20 +1,20 @@
 # Genvex Connect
-Component to directly integrate Genvex Connect (And maybe Nilan gateway) devices into Home Assistant.
+Component to directly integrate Genvex Connect and Nilan Gateway devices into Home Assistant.
 The integrationen uses my own libary [GenvexNabto](https://github.com/superrob/genvexnabto) which handles all communication with the devices locally. Have a look in that repo for more information about the more technical side of the project.
 
-This integration needs the user to have an Genvex Connect gateway connected to their device or own the newer Optima devices, which already have integrated gateways.
+This integration needs the user to have an Genvex Connect or Nilan gateway connected to their device or own the newer Optima devices, which already have integrated gateways.
 
 ### Supported controller models
 |Controller     | Gateway requiured     | Supported       | Tested  |
 |--------------:|:---------------------:|:---------------:|:-------:|
-|Optima 250     | Yes, internet gateway | EXPERIMENTAL    |         |
-|Optima 251     | Yes, internet gateway | EXPERIMENTAL    |         |
-|Optima 260     | Yes, internet gateway | EXPERIMENTAL    |         |
+|Optima 250     | Yes, internet gateway | Should work     |         |
+|Optima 251     | Yes, internet gateway | ✅              | ✅      |
+|Optima 260     | Yes, internet gateway | Should work     |         |
 |Optima 270     | Built in              | ✅              | ✅     |
 |Optima 301     | Yes, internet gateway | Not implemented |         |
 |Optima 312     | Yes, internet gateway | Not implemented |         |
 |Optima 314     | Built in              | Not implemented |         |
-|Nilan CTS400   | Yes, nilan gateway    | EXPERIMENTAL    |         |
+|Nilan CTS400   | Yes, nilan gateway    | ✅              | ✅     |
 |Nilan CTS602   | Yes, nilan gateway    | Not implemented |         |
 
 ## Installation (HACS)
