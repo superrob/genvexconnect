@@ -38,6 +38,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             raise ConfigEntryAuthFailed(f"Credentials expired for {deviceID}")
         if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.TIMEOUT: 
             raise ConfigEntryNotReady(f"Timed out while trying to connect to {deviceID}") 
+        if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL:
+            raise ConfigEntryNotReady(f"Timed out while trying to get data from {deviceID} did not correctly load a model for Model no: {genvexNabto._device_model}, device number: {genvexNabto._device_number} and slavedevice number: {genvexNabto._slavedevice_number}")
+        
     dataResult = await genvexNabto.waitForData()
     if dataResult is False: # Waits for GenvexNabto to get fresh data
         if genvexNabto._model_adapter is None:
