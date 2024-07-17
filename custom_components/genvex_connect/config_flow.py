@@ -107,7 +107,8 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
                 return self.async_show_email_form(invalidEmail=True)
             if self._genvexNabto.connectToDevice is GenvexNabtoConnectionErrorType.TIMEOUT: 
                 return self.async_show_email_form(TimeoutError=True)
-            if self._genvexNabto.connectToDevice is GenvexNabtoConnectionErrorType.AUTHENTICATION_ERROR:
+            if self._genvexNabto.connectToDevice is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL:
+                _LOGGER.info(f"Tried to connect to device with unsupported model. Model no: {self._genvexNabto._device_model}, device number: {self._genvexNabto._device_number} and slavedevice number: {self._genvexNabto._slavedevice_number}")
                 return self.async_abort(reason="unsupported_model")
         _LOGGER.info("Is connected to Genvex device successfully.")
         config_data = {
