@@ -11,9 +11,9 @@ This integration needs the user to have an Genvex Connect or Nilan gateway conne
 |Optima 251     | Yes, internet gateway | ✅              | ✅      |
 |Optima 260     | Yes, internet gateway | Should work     |         |
 |Optima 270     | Built in              | ✅              | ✅     |
-|Optima 301     | Yes, internet gateway | Not implemented |         |
-|Optima 312     | Yes, internet gateway | Not implemented |         |
-|Optima 314     | Built in              | Not implemented |         |
+|Optima 301     | Yes, internet gateway | Should work     |         |
+|Optima 312     | Yes, internet gateway | Should work     |         |
+|Optima 314     | Built in              | Should work     |         |
 |Nilan CTS400   | Yes, nilan gateway    | ✅              | ✅     |
 |Nilan CTS602   | Yes, nilan gateway    | Not implemented |         |
 
