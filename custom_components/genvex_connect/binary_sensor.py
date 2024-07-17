@@ -34,6 +34,7 @@ class GenvexConnectSensorBypass(GenvexConnectEntityBase, BinarySensorEntity):
         """Return the icon of the sensor."""
         return "mdi:valve"
 
+    @property
     def is_on(self) -> None:
         """Fetch new state data for the sensor."""
         return self._genvexNabto.getValue(self._valueKey)
