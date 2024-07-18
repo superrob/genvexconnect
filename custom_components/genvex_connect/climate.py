@@ -33,7 +33,6 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
     def __init__(self, genvexNabto, name, fanSetKey, tempSetKey, extractAirKey, humidityKey):
         super().__init__(genvexNabto, name, fanSetKey, False)
-        self._genvexNabto = genvexNabto
         self._fanSetKey = fanSetKey
         self._tempSetKey = tempSetKey
         self._extractAirKey = extractAirKey

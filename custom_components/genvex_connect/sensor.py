@@ -52,7 +52,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 class GenvexConnectSensorTemperature(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
         self._attr_device_class = SensorDeviceClass.TEMPERATURE
@@ -60,12 +59,11 @@ class GenvexConnectSensorTemperature(GenvexConnectEntityBase, SensorEntity):
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
-        self._attr_native_value = self._genvexNabto.getValue(self._valueKey)
+        self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
 
 class GenvexConnectSensorHumidity(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = "%"
         self._attr_device_class = SensorDeviceClass.HUMIDITY
@@ -73,24 +71,22 @@ class GenvexConnectSensorHumidity(GenvexConnectEntityBase, SensorEntity):
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
-        self._attr_native_value = self._genvexNabto.getValue(self._valueKey)
+        self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
 
 class GenvexConnectSensorDutycycle(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = "%"
         self._attr_state_class = SensorStateClass.MEASUREMENT
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
-        self._attr_native_value = f"{self._genvexNabto.getValue(self._valueKey)}"
+        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
 
 class GenvexConnectSensorRPM(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = "rpm"
         self._attr_state_class = SensorStateClass.MEASUREMENT
@@ -98,12 +94,11 @@ class GenvexConnectSensorRPM(GenvexConnectEntityBase, SensorEntity):
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
-        self._attr_native_value = f"{self._genvexNabto.getValue(self._valueKey)}"
+        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
 
 class GenvexConnectSensorFilterdays(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey, unit):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = unit
         self._attr_state_class = SensorStateClass.MEASUREMENT
@@ -115,4 +110,4 @@ class GenvexConnectSensorFilterdays(GenvexConnectEntityBase, SensorEntity):
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
-        self._attr_native_value = f"{self._genvexNabto.getValue(self._valueKey)}"
+        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"

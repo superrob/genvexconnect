@@ -27,6 +27,14 @@
     }
   },
   "entity": {
+    "button": {
+      "filter_reset": {
+        "name": "Nulstil filter"
+      },
+      "summer_mode": {
+        "name": "Sommer tilstand"
+      }
+    },
     "binary_sensor": {
       "bypass_active": {
         "name": "Bypass aktiv"
@@ -90,6 +98,9 @@
       },
       "reheating": {
         "name": "Eftervarme"
+      },
+      "boost_enable": {
+        "name": "Boost"
       }
     },
     "number": {      
@@ -119,6 +130,9 @@
       },
       "extract_air_level4": {
         "name": "Fraluft - Level 4"
+      },
+      "boost_time": {
+        "name": "Boost tid"
       }
     }
   }
