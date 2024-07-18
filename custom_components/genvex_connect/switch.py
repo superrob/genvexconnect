@@ -17,6 +17,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.REHEATING, "mdi:heating-coil"))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HUMIDITY_CONTROL):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.HUMIDITY_CONTROL, "mdi:water-circle"))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_ENABLE):
+        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.BOOST_ENABLE, "mdi:fan-chevron-up"))
 
     async_add_entities(new_entities)
         
@@ -24,7 +26,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 class GenvexConnectSwitch(GenvexConnectEntityBase, SwitchEntity):
     def __init__(self, genvexNabto, valueKey, icon):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_device_class = SwitchDeviceClass.SWITCH
         self._icon = icon
@@ -45,4 +46,4 @@ class GenvexConnectSwitch(GenvexConnectEntityBase, SwitchEntity):
     @property
     def is_on(self) -> None:
         """Fetch new state data for the switch."""
-        return int(self._genvexNabto.getValue(self._valueKey)) == 1
+        return int(self.genvexNabto.getValue(self._valueKey)) == 1

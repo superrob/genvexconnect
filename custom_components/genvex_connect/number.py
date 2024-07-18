@@ -17,6 +17,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     new_entities= []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_OPENOFFSET))
+    # Air supply level sliders
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2):
@@ -33,6 +34,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4))
+    # Boost time
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_TIME):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BOOST_TIME))
 
     async_add_entities(new_entities)
         
@@ -40,7 +44,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 class GenvexConnectNumber(GenvexConnectEntityBase, NumberEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
-        self._genvexNabto = genvexNabto
         self._valueKey = valueKey
         self._attr_device_class = NumberDeviceClass.TEMPERATURE
         self._attr_native_min_value = genvexNabto.getSetpointMinValue(valueKey)
@@ -54,4 +57,4 @@ class GenvexConnectNumber(GenvexConnectEntityBase, NumberEntity):
     
     def update(self) -> None:
         """Fetch new state data for the number."""
-        self._attr_native_value = f"{self._genvexNabto.getValue(self._valueKey)}"
+        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"

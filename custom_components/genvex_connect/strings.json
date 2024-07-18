@@ -27,9 +27,17 @@
     }
   },
   "entity": {
+    "button": {
+      "filter_reset": {
+        "name": "Reset filter"
+      }
+    },
     "binary_sensor": {
       "bypass_active": {
         "name": "Bypass active"
+      },
+      "summer_mode": {
+        "name": "Summer mode"
       }
     },
     "climate": {
@@ -90,6 +98,9 @@
       },
       "reheating": {
         "name": "Reheating"
+      },
+      "boost_enable": {
+        "name": "Boost"
       }
     },
     "number": {
@@ -119,6 +130,9 @@
       },
       "extract_air_level4": {
         "name": "Extract Air - Level 4"
+      },
+      "boost_time": {
+        "name": "Boost time"
       }
     }
   }
