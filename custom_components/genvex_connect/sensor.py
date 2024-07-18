@@ -45,7 +45,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS, "d"))    
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_MONTHS):
-        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_MONTHS, "m"))    
+        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_MONTHS, "m"))   
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS_LEFT):
+        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS_LEFT, "d"))    
+
+        
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.CO2_LEVEL):
+        new_entities.append(GenvexConnectSensorCO2(genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL))   
     async_add_entities(new_entities)
         
 
@@ -67,6 +73,16 @@ class GenvexConnectSensorHumidity(GenvexConnectEntityBase, SensorEntity):
         self._valueKey = valueKey
         self._attr_native_unit_of_measurement = "%"
         self._attr_device_class = SensorDeviceClass.HUMIDITY
+        self._attr_state_class = SensorStateClass.MEASUREMENT
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
+
+class GenvexConnectSensorCO2(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, valueKey, valueKey)
+        self._valueKey = valueKey
         self._attr_state_class = SensorStateClass.MEASUREMENT
 
     def update(self) -> None:

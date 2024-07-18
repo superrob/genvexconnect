@@ -38,6 +38,9 @@
       },
       "summer_mode": {
         "name": "Summer mode"
+      },
+      "sacrificial_anode": {
+        "name": "Sacrificial anode"
       }
     },
     "climate": {
@@ -90,7 +93,13 @@
       },
       "filter_months": {
         "name": "Months since filter change"
-      }      
+      },
+      "filter_days_left": {
+        "name": "Days left until filter change"
+      },
+      "co2_level": {
+        "name": "CO2 Sensor"
+      }       
     },
     "switch": {
       "humidity_control": {

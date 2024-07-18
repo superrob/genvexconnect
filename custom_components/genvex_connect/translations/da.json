@@ -30,14 +30,17 @@
     "button": {
       "filter_reset": {
         "name": "Nulstil filter"
-      },
-      "summer_mode": {
-        "name": "Sommer tilstand"
       }
     },
     "binary_sensor": {
       "bypass_active": {
         "name": "Bypass aktiv"
+      },
+      "summer_mode": {
+        "name": "Sommer tilstand"
+      },
+      "sacrificial_anode": {
+        "name": "Offeranode"
       }
     },
     "climate": {
@@ -90,6 +93,12 @@
       },
       "filter_months": {
         "name": "Måneder siden filter skift"
+      },
+      "filter_days_left": {
+        "name": "Dage til filter skift"
+      },
+      "co2_level": {
+        "name": "CO2 Sensor"
       }
     }, 
     "switch": {
