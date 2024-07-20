@@ -142,6 +142,12 @@
       },
       "boost_time": {
         "name": "Boost tid"
+      },
+      "hotwater_temp": {
+        "name": "Varmtvands Temperatur"
+      },
+      "hotwater_boosttemp": {
+        "name": "Varmtvands Elpatron maks temperatur"
       }
     }
   }

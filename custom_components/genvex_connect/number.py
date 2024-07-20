@@ -37,6 +37,10 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     # Boost time
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_TIME):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BOOST_TIME))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.HOTWATER_TEMP):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_TEMP))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP))
 
     async_add_entities(new_entities)
         
