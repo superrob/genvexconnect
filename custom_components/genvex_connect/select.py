@@ -48,6 +48,6 @@ class GenvexConnectSelectFanLevel(GenvexConnectEntityBase, SelectEntity):
             fanLevel = 3
         elif option == "Level 4":
             fanLevel = 4
-        self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.self._valueKey, fanLevel)
+        self.genvexNabto.setSetpoint(self._valueKey, fanLevel)
 
     
