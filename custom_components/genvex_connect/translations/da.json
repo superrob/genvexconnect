@@ -121,6 +121,9 @@
     "select": {
       "fan_speed_select": {
         "name": "Ventilator trin"
+      },
+      "antilegionella_day": {
+        "name": "Antilegionella"
       }
     },
     "number": {      
