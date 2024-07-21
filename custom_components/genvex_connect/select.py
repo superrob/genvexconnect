@@ -16,7 +16,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSelectFanLevel(genvexNabto, GenvexNabtoSetpointKey.FAN_SPEED))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.ANTILEGIONELLA_DAY):
         new_entities.append(GenvexConnectSelectAntilegionellaDay(genvexNabto, GenvexNabtoSetpointKey.ANTILEGIONELLA_DAY))
-        
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.COOLING_PRIORITY):
+        new_entities.append(GenvexConnectSelectCoolingPriority(genvexNabto, GenvexNabtoSetpointKey.COOLING_PRIORITY))
 
     async_add_entities(new_entities)
         
@@ -73,3 +74,28 @@ class GenvexConnectSelectAntilegionellaDay(GenvexConnectEntityBase, SelectEntity
             day = self._attr_options.index(option)
         self.genvexNabto.setSetpoint(self._valueKey, day)
     
+class GenvexConnectSelectCoolingPriority(GenvexConnectEntityBase, SelectEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, valueKey, valueKey)
+        self._valueKey = valueKey
+        self._attr_options = ["Hot water", "Supply air"]
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:priority-high"
+    
+    @property
+    def current_option(self) -> str | None:
+        """Return the selected entity option to represent the entity state."""
+        currentValue = int(self.genvexNabto.getValue(self._valueKey))
+        if currentValue < 0 or currentValue > 1:
+            return "Hot water"
+        return self._attr_options[currentValue]
+
+    async def async_select_option(self, option: str) -> None:
+        """Change the selected option."""
+        value = 0
+        if option in self._attr_options:
+            value = self._attr_options.index(option)
+        self.genvexNabto.setSetpoint(self._valueKey, value)

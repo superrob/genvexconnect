@@ -124,6 +124,9 @@
       },
       "antilegionella_day": {
         "name": "Antilegionella"
+      },
+      "cooling_priority": {
+        "name": "Kølnings prioritet"
       }
     },
     "number": {      
