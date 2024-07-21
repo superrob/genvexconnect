@@ -162,6 +162,15 @@
       },
       "hotwater_boosttemp": {
         "name": "Hotwater Booster max temperature"
+      },
+      "filter_days_left": {
+        "name": "Days per filter"
+      },
+      "supplyair_min_temp_summer": {
+        "name": "Summer min supply air temperature"
+      },
+      "supplyair_max_temp_summer": {
+        "name": "Summer max supply air temperature"
       }
     }
   }

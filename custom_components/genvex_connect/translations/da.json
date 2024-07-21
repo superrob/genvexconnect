@@ -162,6 +162,15 @@
       },
       "hotwater_boosttemp": {
         "name": "Varmtvands Elpatron maks temperatur"
+      },
+      "filter_days_left": {
+        "name": "Dage per filter"
+      },
+      "supplyair_min_temp_summer": {
+        "name": "Sommer min tilluft temperatur"
+      },
+      "supplyair_max_temp_summer": {
+        "name": "Sommer maks tilluft temperatur"
       }
     }
   }

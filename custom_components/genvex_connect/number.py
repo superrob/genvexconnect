@@ -41,6 +41,14 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_TEMP))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS_SETTING):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS_SETTING))
+
+        
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLYAIR_MIN_TEMP_SUMMER):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MIN_TEMP_SUMMER))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER))
 
     async_add_entities(new_entities)
         
