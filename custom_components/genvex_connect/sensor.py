@@ -31,7 +31,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.HOTWATER_TOP))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HOTWATER_BOTTOM):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.HOTWATER_BOTTOM))
-        
+
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HUMIDITY):
         new_entities.append(GenvexConnectSensorHumidity(genvexNabto, GenvexNabtoDatapointKey.HUMIDITY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY):
@@ -48,6 +48,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_MONTHS, "m"))   
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FILTER_DAYS_LEFT):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoDatapointKey.FILTER_DAYS_LEFT, "d"))    
+        
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST):
+        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST, ""))    
 
         
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.CO2_LEVEL):

@@ -41,6 +41,9 @@
       },
       "sacrificial_anode": {
         "name": "Offeranode"
+      },      
+      "defrost_active": {
+        "name": "Deice aktiv"
       }
     },
     "climate": {
@@ -99,7 +102,10 @@
       },
       "co2_level": {
         "name": "CO2 Sensor"
-      }
+      },
+      "defrost_timesincelast": {
+        "name": "Tid siden sidste deice"
+      } 
     }, 
     "switch": {
       "humidity_control": {
@@ -110,6 +116,11 @@
       },
       "boost_enable": {
         "name": "Boost"
+      }
+    },
+    "select": {
+      "fan_speed_select": {
+        "name": "Ventilator trin"
       }
     },
     "number": {      
