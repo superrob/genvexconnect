@@ -109,6 +109,9 @@
       "defrost_timesincelast": {
         "name": "Tid siden sidste deice"
       },
+      "efficiency": {
+        "name": "Effektivitet"
+      },
       "controlstate_602": {
         "name": "Status",
         "state": {
@@ -130,6 +133,35 @@
           "state_15": "Service",
           "state_16": "Alarm",
           "state_17": "Opvarmning + Varmtvand"
+        }
+      },
+      "alarm_optima270": {
+        "name": "Alarm",
+        "state": {
+          "state_0": "Ingen alarmer",
+          "state_2": "Filter skift",
+          "state_4": "Stop Styring",
+          "state_8": "T1 Følerfejl",
+          "state_16": "T2 Følerfejl",
+          "state_32": "T3 Følerfejl",
+          "state_64": "T4 Følerfejl",
+          "state_128": "T5 Følerfejl",
+          "state_256": "T6 Følerfejl",
+          "state_512": "T7 Følerfejl",
+          "state_1024": "T8 Følerfejl",
+          "state_2048": "T9 Følerfejl",
+          "state_4096": "Fugtføler",
+          "state_8192": "Brand fejl / ved test",
+          "state_16384": "Tilluft ventilator RPM ERR",
+          "state_32768": "Fraluft ventilator RPM ERR",
+          "state_65536": "Vandfrost fejl",
+          "state_131072": "Brand fejl spjæld 1",
+          "state_262144": "Brand fejl spjæld 2",
+          "state_524288": "Brand fejl spjæld 3",
+          "state_1048576": "Brand fejl spjæld 4",
+          "state_2097152": "Brand fejl - Brandboks 1",
+          "state_4194304": "Brand fejl - Brandboks 2",
+          "state_8388608": "Rotor alarm"
         }
       }
     }, 

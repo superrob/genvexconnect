@@ -109,6 +109,9 @@
       "defrost_timesincelast": {
         "name": "Time since last defrost"
       },
+      "efficiency": {
+        "name": "Efficiency"
+      },
       "controlstate_602": {
         "name": "Status",
         "state": {
@@ -130,6 +133,35 @@
           "state_15": "Service",
           "state_16": "Alarm",
           "state_17": "Heating + hot water"
+        }
+      },
+      "alarm_optima270": {
+        "name": "Alarm",
+        "state": {
+          "state_0": "No Alarms",
+          "state_2": "Change Filter",
+          "state_4": "External stop",
+          "state_8": "T1 Sensor error",
+          "state_16": "T2 Sensor error",
+          "state_32": "T3 Sensor error",
+          "state_64": "T4 Sensor error",
+          "state_128": "T5 Sensor error",
+          "state_256": "T6 Sensor error",
+          "state_512": "T7 Sensor error",
+          "state_1024": "T8 Sensor error",
+          "state_2048": "T9 Sensor error",
+          "state_4096": "Humidity sensor",
+          "state_8192": "Fire error / test",
+          "state_16384": "Supply Fan RPM ERR",
+          "state_32768": "Extract Fan RPM ERR",
+          "state_65536": "Frost failure",
+          "state_131072": "Fire error damper 1",
+          "state_262144": "Fire error damper 2",
+          "state_524288": "Fire error damper 3",
+          "state_1048576": "Fire error damper 4",
+          "state_2097152": "Fire Box 1 failure",
+          "state_4194304": "Fire Box 2 failure",
+          "state_8388608": "Rotor alarm"
         }
       }    
     },
