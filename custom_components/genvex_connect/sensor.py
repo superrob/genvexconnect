@@ -249,6 +249,11 @@ class GenvexConnectSensorAlarmOptima270(GenvexConnectEntityBase, SensorEntity):
         ]
         self._attr_native_value = "state_0"
 
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:alarm-bell"
+
     def update(self) -> None:
         """Fetch new state data for the sensor."""
         self._attr_native_value = f"state_{int(self.genvexNabto.getValue(self._valueKey))}"
