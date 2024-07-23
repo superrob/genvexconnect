@@ -14,10 +14,6 @@ from .const import DOMAIN, CONF_DEVICE_ID, CONF_AUTHENTICATED_EMAIL
 _LOGGER = logging.getLogger(__name__)
 PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.BINARY_SENSOR, Platform.CLIMATE, Platform.SWITCH, Platform.NUMBER, Platform.BUTTON, Platform.SELECT]
 
-async def async_setup(_hass: HomeAssistant, _config: Config):
-    """Set up this integration using YAML is not supported."""
-    return True
-
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Genvex Connect from a config entry."""
     if hass.data.get(DOMAIN) is None:

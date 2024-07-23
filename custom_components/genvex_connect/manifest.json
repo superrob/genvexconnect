@@ -1,17 +1,16 @@
 {
   "domain": "genvex_connect",
   "name": "Genvex Connect",
-  "version": "0.2.1",
   "codeowners": [
     "@superrob"
   ],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/superrob/genvexconnect",
-  "issue_tracker": "https://github.com/superrob/genvexconnect/issues",
-  "homekit": {},
   "iot_class": "local_push",
-  "requirements": ["genvexnabto==0.2.1"],
-  "ssdp": [],
-  "zeroconf": []
+  "issue_tracker": "https://github.com/superrob/genvexconnect/issues",
+  "requirements": [
+    "genvexnabto==0.2.1"
+  ],
+  "version": "0.2.1"  
 }
