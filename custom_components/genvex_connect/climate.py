@@ -11,27 +11,46 @@ from homeassistant.components.climate.const import (
     FAN_MIDDLE,
     FAN_MEDIUM,
     FAN_HIGH,
-    HVACAction
+    HVACAction,
 )
 from homeassistant.const import UnitOfTemperature
 from genvexnabto import GenvexNabto, GenvexNabtoDatapointKey, GenvexNabtoSetpointKey
 from .entity import GenvexConnectEntityBase
 
 from .const import DOMAIN
+
 _LOGGER = logging.getLogger(__name__)
+
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Add sensors for passed config_entry in HA."""
     genvexNabto: GenvexNabto = hass.data[DOMAIN][config_entry.entry_id]
 
-    new_entities= []
-    if genvexNabto.providesValue(GenvexNabtoSetpointKey.FAN_SPEED) and genvexNabto.providesValue(GenvexNabtoSetpointKey.TEMP_SETPOINT) and genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EXTRACT) and genvexNabto.providesValue(GenvexNabtoDatapointKey.HUMIDITY):
-        new_entities.append(GenvexConnectClimate(genvexNabto, "ventilation", fanSetKey=GenvexNabtoSetpointKey.FAN_SPEED, tempSetKey=GenvexNabtoSetpointKey.TEMP_SETPOINT, extractAirKey=GenvexNabtoDatapointKey.TEMP_EXTRACT, humidityKey=GenvexNabtoDatapointKey.HUMIDITY))
+    new_entities = []
+    if (
+        genvexNabto.providesValue(GenvexNabtoSetpointKey.FAN_SPEED)
+        and genvexNabto.providesValue(GenvexNabtoSetpointKey.TEMP_SETPOINT)
+        and genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EXTRACT)
+        and genvexNabto.providesValue(GenvexNabtoDatapointKey.HUMIDITY)
+    ):
+        new_entities.append(
+            GenvexConnectClimate(
+                genvexNabto,
+                "ventilation",
+                fanSetKey=GenvexNabtoSetpointKey.FAN_SPEED,
+                tempSetKey=GenvexNabtoSetpointKey.TEMP_SETPOINT,
+                extractAirKey=GenvexNabtoDatapointKey.TEMP_EXTRACT,
+                humidityKey=GenvexNabtoDatapointKey.HUMIDITY,
+            )
+        )
     async_add_entities(new_entities)
+
 
 class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
-    def __init__(self, genvexNabto, name, fanSetKey, tempSetKey, extractAirKey, humidityKey):
+    def __init__(
+        self, genvexNabto, name, fanSetKey, tempSetKey, extractAirKey, humidityKey
+    ):
         super().__init__(genvexNabto, name, fanSetKey, False)
         self._fanSetKey = fanSetKey
         self._tempSetKey = tempSetKey
@@ -45,7 +64,9 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     @property
     def supported_features(self):
         """Return the list of supported features."""
-        features = ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE
+        features = (
+            ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE
+        )
 
         return features
 
@@ -78,7 +99,7 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     @property
     def fan_modes(self):
         return [FAN_OFF, FAN_LOW, FAN_MIDDLE, FAN_MEDIUM, FAN_HIGH]
-    
+
     @property
     def fan_mode(self):
         fanValue = self.genvexNabto.getValue(self._fanSetKey)
@@ -92,7 +113,7 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
             return FAN_MEDIUM
         elif fanValue == 4:
             return FAN_HIGH
-        
+
     async def async_set_fan_mode(self, fan_mode: str) -> None:
         _LOGGER.info(f"Wanted to set fan mode to {fan_mode}")
         speed = 2
@@ -106,7 +127,7 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
             speed = 3
         elif fan_mode == FAN_HIGH:
             speed = 4
-        self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.FAN_SPEED ,speed)
+        self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.FAN_SPEED, speed)
 
     @property
     def temperature_unit(self):
@@ -117,7 +138,7 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
         return self.genvexNabto.getValue(self._extractAirKey)
 
     @property
-    def target_temperature(self):        
+    def target_temperature(self):
         return self.genvexNabto.getValue(self._tempSetKey)
 
     @property
@@ -130,5 +151,6 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
     async def async_set_temperature(self, **kwargs) -> None:
         """Set the target temperature"""
-        _LOGGER.info(f"Would like to set the target temperature to {kwargs["temperature"]}")
-        self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.TEMP_SETPOINT, kwargs["temperature"])
+        self.genvexNabto.setSetpoint(
+            GenvexNabtoSetpointKey.TEMP_SETPOINT, kwargs["temperature"]
+        )
