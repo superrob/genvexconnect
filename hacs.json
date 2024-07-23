@@ -1,5 +1,5 @@
 {
   "name": "Genvex Connect",
-  "render_readme": true,
-  "iot_class": "Local Polling"
+  "homeassistant": "2023.6.0",
+  "render_readme": true
 }
