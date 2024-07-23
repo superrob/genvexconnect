@@ -1,27 +1,38 @@
 """Platform for switch integration."""
-from homeassistant.components.switch import (
-    SwitchDeviceClass,
-    SwitchEntity
-)
+
+from homeassistant.components.switch import SwitchDeviceClass, SwitchEntity
 from genvexnabto import GenvexNabto, GenvexNabto, GenvexNabtoSetpointKey
 from .entity import GenvexConnectEntityBase
 
 from .const import DOMAIN
 
+
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Add sensors for passed config_entry in HA."""
     genvexNabto: GenvexNabto = hass.data[DOMAIN][config_entry.entry_id]
 
-    new_entities= []
+    new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.REHEATING):
-        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.REHEATING, "mdi:heating-coil"))
+        new_entities.append(
+            GenvexConnectSwitch(
+                genvexNabto, GenvexNabtoSetpointKey.REHEATING, "mdi:heating-coil"
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HUMIDITY_CONTROL):
-        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.HUMIDITY_CONTROL, "mdi:water-circle"))
+        new_entities.append(
+            GenvexConnectSwitch(
+                genvexNabto, GenvexNabtoSetpointKey.HUMIDITY_CONTROL, "mdi:water-circle"
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_ENABLE):
-        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.BOOST_ENABLE, "mdi:fan-chevron-up"))
+        new_entities.append(
+            GenvexConnectSwitch(
+                genvexNabto, GenvexNabtoSetpointKey.BOOST_ENABLE, "mdi:fan-chevron-up"
+            )
+        )
 
     async_add_entities(new_entities)
-        
+
 
 class GenvexConnectSwitch(GenvexConnectEntityBase, SwitchEntity):
     def __init__(self, genvexNabto, valueKey, icon):
