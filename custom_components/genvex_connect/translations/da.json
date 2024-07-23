@@ -64,6 +64,9 @@
       "temp_exhaust": {
         "name": "Temperatur Afkastluft"
       },
+      "temp_room": {
+        "name": "Temperatur Rum"
+      },
       "temp_condenser": {
         "name": "Temperatur Kondensator"
       },
@@ -105,7 +108,30 @@
       },
       "defrost_timesincelast": {
         "name": "Tid siden sidste deice"
-      } 
+      },
+      "controlstate_602": {
+        "name": "Status",
+        "state": {
+          "state_0": "Slukket",
+          "state_1": "Shift",
+          "state_2": "Stop",
+          "state_3": "Start",
+          "state_4": "Standby",
+          "state_5": "Ventilation stop",
+          "state_6": "Ventilations tilstand",
+          "state_7": "Opvarmning",
+          "state_8": "Nedkøling",
+          "state_9": "Varmtvands produktion.",
+          "state_10": "Legionella",
+          "state_11": "Nedkøling + Varmtvand",
+          "state_12": "Central opvarmning",
+          "state_13": "De-icer",
+          "state_14": "Frostbeskyttelse",
+          "state_15": "Service",
+          "state_16": "Alarm",
+          "state_17": "Opvarmning + Varmtvand"
+        }
+      }
     }, 
     "switch": {
       "humidity_control": {
@@ -129,7 +155,10 @@
         "name": "Kølnings prioritet"
       }
     },
-    "number": {      
+    "number": {
+      "temp_setpoint_slider": {
+        "name": "Temperatur mål"
+      },      
       "bypass_openoffset": {
         "name": "Bypass offset"
       },

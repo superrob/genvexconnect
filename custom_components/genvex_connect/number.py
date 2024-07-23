@@ -50,6 +50,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER))
 
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.TEMP_SETPOINT):
+        new_entities.append(GenvexConnectNumberSetpointTemperature(genvexNabto, GenvexNabtoSetpointKey.TEMP_SETPOINT))
+
     async_add_entities(new_entities)
         
 
@@ -62,6 +65,23 @@ class GenvexConnectNumber(GenvexConnectEntityBase, NumberEntity):
         self._attr_native_max_value = genvexNabto.getSetpointMaxValue(valueKey)
         self._attr_native_step = genvexNabto.getSetpointStep(valueKey)
         self._attr_entity_category = EntityCategory.CONFIG
+ 
+    async def async_set_native_value(self, value: float) -> None:
+        """Update the current value."""
+        self.genvexNabto.setSetpoint(self._valueKey, value)
+    
+    def update(self) -> None:
+        """Fetch new state data for the number."""
+        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
+
+class GenvexConnectNumberSetpointTemperature(GenvexConnectEntityBase, NumberEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, f"{valueKey}_slider", valueKey)
+        self._valueKey = valueKey
+        self._attr_device_class = NumberDeviceClass.TEMPERATURE
+        self._attr_native_min_value = genvexNabto.getSetpointMinValue(valueKey)
+        self._attr_native_max_value = genvexNabto.getSetpointMaxValue(valueKey)
+        self._attr_native_step = genvexNabto.getSetpointStep(valueKey)
  
     async def async_set_native_value(self, value: float) -> None:
         """Update the current value."""

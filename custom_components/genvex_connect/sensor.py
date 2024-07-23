@@ -23,6 +23,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_OUTSIDE))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EXHAUST):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_EXHAUST))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_ROOM):
+        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_ROOM))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_CONDENSER):
         new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_CONDENSER))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EVAPORATOR):
@@ -52,12 +54,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST, ""))    
 
-        
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.CO2_LEVEL):
         new_entities.append(GenvexConnectSensorCO2(genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL))   
-    async_add_entities(new_entities)
-        
 
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.CONTROLSTATE_602):
+        new_entities.append(GenvexConnectSensorControlState602(genvexNabto, GenvexNabtoDatapointKey.CONTROLSTATE_602))
+    async_add_entities(new_entities)
+               
 class GenvexConnectSensorTemperature(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
@@ -86,6 +89,7 @@ class GenvexConnectSensorCO2(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
+        self._attr_device_class = SensorDeviceClass.CO2
         self._attr_state_class = SensorStateClass.MEASUREMENT
 
     def update(self) -> None:
@@ -130,3 +134,15 @@ class GenvexConnectSensorFilterdays(GenvexConnectEntityBase, SensorEntity):
     def update(self) -> None:
         """Fetch new state data for the sensor."""
         self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
+
+class GenvexConnectSensorControlState602(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, valueKey, valueKey)
+        self._valueKey = valueKey
+        self._attr_device_class = SensorDeviceClass.ENUM
+        self._attr_options = ["state_0","state_1","state_2","state_3","state_4","state_5","state_6","state_7","state_8","state_9","state_10","state_11","state_12","state_13","state_14","state_15","state_16","state_17"]
+        self._attr_native_value = "state_0"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = f"state_{self.genvexNabto.getValue(self._valueKey)}"

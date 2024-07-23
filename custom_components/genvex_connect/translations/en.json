@@ -64,6 +64,9 @@
       "temp_exhaust": {
         "name": "Temperature Exhaust air"
       },
+      "temp_room": {
+        "name": "Temperature Room"
+      },
       "temp_condenser": {
         "name": "Temperature Condenser"
       },
@@ -105,6 +108,29 @@
       },
       "defrost_timesincelast": {
         "name": "Time since last defrost"
+      },
+      "controlstate_602": {
+        "name": "Status",
+        "state": {
+          "state_0": "Off",
+          "state_1": "Shift",
+          "state_2": "Stop",
+          "state_3": "Start",
+          "state_4": "Standby",
+          "state_5": "Ventilation stop",
+          "state_6": "Ventilation mode",
+          "state_7": "Heating mode",
+          "state_8": "Cooling mode",
+          "state_9": "Hot water prod.",
+          "state_10": "Legionella",
+          "state_11": "Cooling + hot water",
+          "state_12": "Central heating",
+          "state_13": "De-icing",
+          "state_14": "Frost secure",
+          "state_15": "Service",
+          "state_16": "Alarm",
+          "state_17": "Heating + hot water"
+        }
       }    
     },
     "switch": {
@@ -130,6 +156,9 @@
       }
     },
     "number": {
+      "temp_setpoint_slider": {
+        "name": "Temperature target"
+      },
       "bypass_openoffset": {
         "name": "Bypass offset"
       },
