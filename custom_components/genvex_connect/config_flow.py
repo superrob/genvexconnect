@@ -46,9 +46,7 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
             ): vol.In([list(self._genvexNabto._discovered_devices.keys())]),
         }
 
-        return self.async_show_form(
-            step_id="pick", data_schema=vol.Schema(data_schema), errors={}
-        )
+        return self.async_show_form(step_id="pick", data_schema=vol.Schema(data_schema), errors={})
 
     def async_show_email_form(self, invalidEmail=False, connectionTimeout=False):
         """Show the email form."""
@@ -64,13 +62,9 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
         if connectionTimeout:
             errors["base"] = "cannot_connect"
 
-        return self.async_show_form(
-            step_id="email", data_schema=vol.Schema(data_schema), errors=errors
-        )
+        return self.async_show_form(step_id="email", data_schema=vol.Schema(data_schema), errors=errors)
 
-    async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         """Handle the initial step."""
         devices = await self._genvexNabto.discoverDevices()
         _LOGGER.info(devices)
@@ -109,20 +103,11 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
         self._genvexNabto.connectToDevice()
         await self._genvexNabto.waitForConnection()
         if self._genvexNabto._connection_error is not False:
-            if (
-                self._genvexNabto._connection_error
-                is GenvexNabtoConnectionErrorType.AUTHENTICATION_ERROR
-            ):
+            if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.AUTHENTICATION_ERROR:
                 return self.async_show_email_form(invalidEmail=True)
-            if (
-                self._genvexNabto._connection_error
-                is GenvexNabtoConnectionErrorType.TIMEOUT
-            ):
+            if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.TIMEOUT:
                 return self.async_show_email_form(TimeoutError=True)
-            if (
-                self._genvexNabto._connection_error
-                is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL
-            ):
+            if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL:
                 _LOGGER.warn(
                     f"Tried to connect to device with unsupported model. Model no: {self._genvexNabto._device_model}, device number: {self._genvexNabto._device_number}, slavedevice number: {self._genvexNabto._slavedevice_number}, and slavedevice model: {self._genvexNabto._slavedevice_model}"
                 )

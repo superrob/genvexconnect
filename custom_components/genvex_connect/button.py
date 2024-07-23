@@ -14,11 +14,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_RESET):
-        new_entities.append(
-            GenvexConnectButton(
-                genvexNabto, GenvexNabtoSetpointKey.FILTER_RESET, "mdi:air-filter"
-            )
-        )
+        new_entities.append(GenvexConnectButton(genvexNabto, GenvexNabtoSetpointKey.FILTER_RESET, "mdi:air-filter"))
 
     async_add_entities(new_entities)
 

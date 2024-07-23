@@ -14,79 +14,41 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_OPENOFFSET)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_OPENOFFSET))
     # Air supply level sliders
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL3):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL3)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL3))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL4):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL4)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL4))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL1):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL1)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL1))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL2):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL2)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL2))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4))
     # Boost time
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_TIME):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BOOST_TIME)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BOOST_TIME))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HOTWATER_TEMP):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_TEMP)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_TEMP))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.HOTWATER_BOOSTTEMP))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS_SETTING):
-        new_entities.append(
-            GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS_SETTING)
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS_SETTING))
 
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLYAIR_MIN_TEMP_SUMMER):
-        new_entities.append(
-            GenvexConnectNumber(
-                genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MIN_TEMP_SUMMER
-            )
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MIN_TEMP_SUMMER))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER):
-        new_entities.append(
-            GenvexConnectNumber(
-                genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER
-            )
-        )
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLYAIR_MAX_TEMP_SUMMER))
 
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.TEMP_SETPOINT):
-        new_entities.append(
-            GenvexConnectNumberSetpointTemperature(
-                genvexNabto, GenvexNabtoSetpointKey.TEMP_SETPOINT
-            )
-        )
+        new_entities.append(GenvexConnectNumberSetpointTemperature(genvexNabto, GenvexNabtoSetpointKey.TEMP_SETPOINT))
 
     async_add_entities(new_entities)
 

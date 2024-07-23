@@ -48,9 +48,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
-    def __init__(
-        self, genvexNabto, name, fanSetKey, tempSetKey, extractAirKey, humidityKey
-    ):
+    def __init__(self, genvexNabto, name, fanSetKey, tempSetKey, extractAirKey, humidityKey):
         super().__init__(genvexNabto, name, fanSetKey, False)
         self._fanSetKey = fanSetKey
         self._tempSetKey = tempSetKey
@@ -64,9 +62,7 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     @property
     def supported_features(self):
         """Return the list of supported features."""
-        features = (
-            ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE
-        )
+        features = ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE
 
         return features
 
@@ -151,6 +147,4 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
     async def async_set_temperature(self, **kwargs) -> None:
         """Set the target temperature"""
-        self.genvexNabto.setSetpoint(
-            GenvexNabtoSetpointKey.TEMP_SETPOINT, kwargs["temperature"]
-        )
+        self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.TEMP_SETPOINT, kwargs["temperature"])

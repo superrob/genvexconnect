@@ -13,21 +13,11 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FAN_SPEED):
-        new_entities.append(
-            GenvexConnectSelectFanLevel(genvexNabto, GenvexNabtoSetpointKey.FAN_SPEED)
-        )
+        new_entities.append(GenvexConnectSelectFanLevel(genvexNabto, GenvexNabtoSetpointKey.FAN_SPEED))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.ANTILEGIONELLA_DAY):
-        new_entities.append(
-            GenvexConnectSelectAntilegionellaDay(
-                genvexNabto, GenvexNabtoSetpointKey.ANTILEGIONELLA_DAY
-            )
-        )
+        new_entities.append(GenvexConnectSelectAntilegionellaDay(genvexNabto, GenvexNabtoSetpointKey.ANTILEGIONELLA_DAY))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.COOLING_PRIORITY):
-        new_entities.append(
-            GenvexConnectSelectCoolingPriority(
-                genvexNabto, GenvexNabtoSetpointKey.COOLING_PRIORITY
-            )
-        )
+        new_entities.append(GenvexConnectSelectCoolingPriority(genvexNabto, GenvexNabtoSetpointKey.COOLING_PRIORITY))
 
     async_add_entities(new_entities)
 
