@@ -244,6 +244,9 @@
       },
       "cooling_temperature": {
         "name": "Cooling offset"
+      },
+      "filter_months_setting": {
+        "name": "Months between filterchange"
       }
     }
   }

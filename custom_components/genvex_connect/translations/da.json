@@ -97,9 +97,6 @@
       "filter_days": {
         "name": "Dage siden filter skift"
       },
-      "filter_months": {
-        "name": "Måneder siden filter skift"
-      },
       "filter_days_left": {
         "name": "Dage til filter skift"
       },
@@ -244,6 +241,9 @@
       },
       "cooling_temperature": {
         "name": "Nedlølning offset"
+      },
+      "filter_months_setting": {
+        "name": "Måneder mellem filterskift"
       }
     }
   }

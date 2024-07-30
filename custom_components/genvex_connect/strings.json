@@ -97,9 +97,6 @@
       "filter_days": {
         "name": "Days since filter change"
       },
-      "filter_months": {
-        "name": "Months since filter change"
-      },
       "filter_days_left": {
         "name": "Days left until filter change"
       },
@@ -244,6 +241,9 @@
       },
       "cooling_temperature": {
         "name": "Cooling offset"
+      },
+      "filter_months_setting": {
+        "name": "Months between filterchange"
       }
     }
   }

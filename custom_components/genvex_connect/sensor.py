@@ -56,8 +56,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorRPM(genvexNabto, GenvexNabtoDatapointKey.RPM_EXTRACT))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS, "d"))
-    if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_MONTHS):
-        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_MONTHS, "m"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FILTER_DAYS_LEFT):
         new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoDatapointKey.FILTER_DAYS_LEFT, "d"))
 
