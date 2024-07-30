@@ -16,8 +16,8 @@ This integration needs the user to have an Genvex Connect or Nilan gateway conne
 |Optima 314         | Built in              | ✅              |         |
 |Nilan CTS400       | Yes, nilan gateway    | ✅              | ✅     |
 |Nilan CTS602       | Yes, nilan gateway    | ✅              | ✅     |
-|Nilan CTS602 Light | Yes, nilan gateway    | EXPERIMENTAL    |         |
-|Nilan CTS602 Geo   | Yes, nilan gateway    | Not implemented |         |
+|Nilan CTS602 Light | Yes, nilan gateway    | ✅              |         |
+|Nilan CTS602 Geo   | Yes, nilan gateway    | ✅              |         |
 
 ## Installation (HACS)
 
