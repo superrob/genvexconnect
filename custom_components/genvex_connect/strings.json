@@ -6,7 +6,7 @@
     },
     "error": {
       "cannot_connect": "Failed to connect to the device.",
-      "invalid_auth": "Invalid email, please check your email is exactly the same as used in the Genvex Connect app.",
+      "invalid_auth": "Invalid email, please check your email is exactly the same as used in the Genvex Connect app. Check also if you've written the email in the same case as it is case sensitive.",
       "unknown": "Unexpected error"
     },
     "step": {

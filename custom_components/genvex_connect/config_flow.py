@@ -104,7 +104,10 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
         await self._genvexNabto.waitForConnection()
         if self._genvexNabto._connection_error is not False:
             if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.AUTHENTICATION_ERROR:
-                return self.async_show_email_form(invalidEmail=True)
+                if self._authenticatedEmail.lower() == self._authenticatedEmail:
+                    return self.async_show_email_form(invalidEmail=True)
+                user_input[CONF_AUTHENTICATED_EMAIL] = self._authenticatedEmail.lower()
+                return await self.async_step_email(user_input)
             if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.TIMEOUT:
                 return self.async_show_email_form(TimeoutError=True)
             if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL:
