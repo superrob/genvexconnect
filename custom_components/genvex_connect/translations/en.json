@@ -172,6 +172,12 @@
       "reheating": {
         "name": "Reheating"
       },
+      "preheating": {
+        "name": "Preheating"
+      },
+      "cooling_enable": {
+        "name": "Cooling"
+      },
       "boost_enable": {
         "name": "Boost"
       }
@@ -235,6 +241,9 @@
       },
       "supplyair_max_temp_summer": {
         "name": "Summer max supply air temperature"
+      },
+      "cooling_temperature": {
+        "name": "Cooling offset"
       }
     }
   }

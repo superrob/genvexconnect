@@ -14,6 +14,10 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.REHEATING):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.REHEATING, "mdi:heating-coil"))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.PREHEATING):
+        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.PREHEATING, "mdi:heating-coil"))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.COOLING_ENABLE):
+        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.COOLING_ENABLE, "mdi:coolant-temperature"))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HUMIDITY_CONTROL):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.HUMIDITY_CONTROL, "mdi:water-circle"))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_ENABLE):

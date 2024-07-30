@@ -172,6 +172,12 @@
       "reheating": {
         "name": "Eftervarme"
       },
+      "preheating": {
+        "name": "Forvarme"
+      },
+      "cooling_enable": {
+        "name": "Kølning"
+      },
       "boost_enable": {
         "name": "Boost"
       }
@@ -235,6 +241,9 @@
       },
       "supplyair_max_temp_summer": {
         "name": "Sommer maks tilluft temperatur"
+      },
+      "cooling_temperature": {
+        "name": "Nedlølning offset"
       }
     }
   }
