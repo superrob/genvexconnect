@@ -82,6 +82,12 @@
       "humidity": {
         "name": "Luftfugtighed"
       },
+      "fan_level_supply": {
+        "name": "Ventilator Niveau Tilluft"
+      },
+      "fan_level_extract": {
+        "name": "Ventilator Niveau Fraluft"
+      },
       "fan_speed_supply": {
         "name": "Ventilator Hastighed Tilluft"
       },
@@ -188,6 +194,12 @@
       },
       "cooling_priority": {
         "name": "Kølnings prioritet"
+      },
+      "cooling_offset": {
+        "name": "Kølning start offset",
+        "state": {
+          "Cooling deactivated": "Kølning deaktiveret"
+        }
       }
     },
     "number": {

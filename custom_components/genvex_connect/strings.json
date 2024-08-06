@@ -82,6 +82,12 @@
       "humidity": {
         "name": "Humidity"
       },
+      "fan_level_supply": {
+        "name": "Fan Level Supply"
+      },
+      "fan_level_extract": {
+        "name": "Fan Level Extract"
+      },
       "fan_speed_supply": {
         "name": "Fan Speed Supply"
       },
@@ -188,6 +194,12 @@
       },
       "cooling_priority": {
         "name": "Cooling Priority"
+      },
+      "cooling_offset": {
+        "name": "Cooling start offset",
+        "state": {
+          "Cooling deactivated": "Cooling deactivated"
+        }
       }
     },
     "number": {
