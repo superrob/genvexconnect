@@ -118,7 +118,7 @@ class GenvexConnectSelectCoolingOffset(GenvexConnectEntityBase, SelectEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
-        self._attr_options = ["Cooling deactivated", "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8", "+9", "+10"]
+        self._attr_options = ["Cooling deactivated", "+0", "+1", "+2", "+3", "+4", "+5", "+7", "+10"]
 
     @property
     def icon(self):
@@ -129,8 +129,8 @@ class GenvexConnectSelectCoolingOffset(GenvexConnectEntityBase, SelectEntity):
     def current_option(self) -> str | None:
         """Return the selected entity option to represent the entity state."""
         currentValue = int(self.genvexNabto.getValue(self._valueKey))
-        if currentValue < 0 or currentValue > 1:
-            return "Hot water"
+        if currentValue < 0 or currentValue > 8:
+            return "Cooling deactivated"
         return self._attr_options[currentValue]
 
     async def async_select_option(self, option: str) -> None:
