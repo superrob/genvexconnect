@@ -115,6 +115,12 @@
       "efficiency": {
         "name": "Efficiency"
       },
+      "preheat_pwm": {
+        "name": "Preheating PWM"
+      },
+      "reheat_pwm": {
+        "name": "Reheating PWM"
+      },
       "controlstate_602": {
         "name": "Status",
         "state": {
@@ -196,10 +202,7 @@
         "name": "Cooling Priority"
       },
       "cooling_offset": {
-        "name": "Cooling start offset",
-        "state": {
-          "Cooling deactivated": "Cooling deactivated"
-        }
+        "name": "Cooling start offset"
       }
     },
     "number": {

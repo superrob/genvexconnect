@@ -50,6 +50,10 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT):
         new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.PREHEAT_PWM):
+        new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.PREHEAT_PWM))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.REHEAT_PWM):
+        new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.REHEAT_PWM))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_SUPPLY):
         new_entities.append(GenvexConnectSensorRPM(genvexNabto, GenvexNabtoDatapointKey.RPM_SUPPLY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_EXTRACT):

@@ -115,6 +115,12 @@
       "efficiency": {
         "name": "Effektivitet"
       },
+      "preheat_pwm": {
+        "name": "Forvarme PWM"
+      },
+      "reheat_pwm": {
+        "name": "Eftervarme PWM"
+      },
       "controlstate_602": {
         "name": "Status",
         "state": {
@@ -196,10 +202,7 @@
         "name": "Kølnings prioritet"
       },
       "cooling_offset": {
-        "name": "Kølning start offset",
-        "state": {
-          "Cooling deactivated": "Kølning deaktiveret"
-        }
+        "name": "Kølning start offset"
       }
     },
     "number": {
