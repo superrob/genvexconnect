@@ -23,6 +23,15 @@
         "data": {
           "authenticatedEmail": "Email"
         }
+      },
+      "manual": {
+        "title": "Genvex Connect Setup",
+        "description": "Please provide your gateway IP, port and email used for the Genvex Connect app.",
+        "data": {
+          "deviceIP": "IP",
+          "devicePort": "Port",
+          "authenticatedEmail": "Email"
+        }
       }
     }
   },

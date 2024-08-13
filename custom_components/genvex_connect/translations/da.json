@@ -23,6 +23,15 @@
         "data": {
           "authenticatedEmail": "Email"
         }
+      },
+      "manual": {
+        "title": "Genvex Connect Opsætning",
+        "description": "Indtast din gateways IP adresse og port, samt den email du bruger i Genvex Connect appen",
+        "data": {
+          "deviceIP": "IP",
+          "devicePort": "Port",
+          "authenticatedEmail": "Email"
+        }
       }
     }
   },

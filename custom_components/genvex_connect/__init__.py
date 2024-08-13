@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant, Config
 from homeassistant.exceptions import ConfigEntryNotReady, ConfigEntryAuthFailed
 
 from genvexnabto import GenvexNabto, GenvexNabtoConnectionErrorType
-from .const import DOMAIN, CONF_DEVICE_ID, CONF_AUTHENTICATED_EMAIL
+from .const import DOMAIN, CONF_DEVICE_ID, CONF_AUTHENTICATED_EMAIL, CONF_DEVICE_IP, CONF_DEVICE_PORT
 
 _LOGGER = logging.getLogger(__name__)
 PLATFORMS: list[Platform] = [
@@ -28,10 +28,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if hass.data.get(DOMAIN) is None:
         hass.data.setdefault(DOMAIN, {})
 
-    deviceID = entry.data.get(CONF_DEVICE_ID)
     authenticatedEmail = entry.data.get(CONF_AUTHENTICATED_EMAIL)
+    genvexNabto = GenvexNabto(authenticatedEmail)
+    deviceID = entry.data.get(CONF_DEVICE_ID)
+    if deviceID is not None:
+        genvexNabto.setDevice(deviceID)
+    else:
+        deviceIP = entry.data.get(CONF_DEVICE_IP)
+        devicePort = entry.data.get(CONF_DEVICE_PORT)
+        genvexNabto.setManualIP(deviceIP, devicePort)
+        deviceID = genvexNabto._device_id
 
-    genvexNabto = GenvexNabto(authenticatedEmail, deviceID)
     discoveryResult = await genvexNabto.waitForDiscovery()
     if discoveryResult is False:  # Waits for GenvexNabto to discover the current device IP
         raise ConfigEntryNotReady(f"Timed out while trying to discover {deviceID}")
