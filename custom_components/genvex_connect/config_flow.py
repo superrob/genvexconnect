@@ -59,8 +59,8 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
         """After user has picked a device"""
         _LOGGER.info("Async step user has picked {%s}", user_input)
 
-        selectedDeviceID = user_input[CONF_DEVICE_ID][0]
-        if selectedDeviceID is "M":
+        selectedDeviceID = user_input[CONF_DEVICE_ID]
+        if selectedDeviceID == "Manual":
             return self.async_show_manual_form()
 
         self._deviceID = selectedDeviceID
