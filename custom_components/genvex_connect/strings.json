@@ -53,6 +53,9 @@
       },      
       "defrost_active": {
         "name": "Defrost active"
+      },
+      "alarm_active": {
+        "name": "Alarm active"
       }
     },
     "climate": {
@@ -181,7 +184,7 @@
           "state_4194304": "Fire Box 2 failure",
           "state_8388608": "Rotor alarm"
         }
-      }   
+      } 
     },
     "switch": {
       "humidity_control": {

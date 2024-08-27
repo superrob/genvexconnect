@@ -54,6 +54,15 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 inverted=True,
             )
         )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.ALARM_ACTIVE):
+        new_entities.append(
+            GenvexConnectBinarySensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.ALARM_ACTIVE,
+                "mdi:alarm-light",
+                type=BinarySensorDeviceClass.PROBLEM,
+            )
+        )
 
     async_add_entities(new_entities)
 
