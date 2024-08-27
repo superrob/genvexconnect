@@ -69,7 +69,7 @@ class GenvexConnectBinarySensorGeneric(GenvexConnectEntityBase, BinarySensorEnti
     @property
     def icon(self):
         """Return the icon of the sensor."""
-        return "mdi:valve"
+        return self._icon
 
     @property
     def is_on(self) -> None:
