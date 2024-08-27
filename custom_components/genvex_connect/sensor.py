@@ -288,15 +288,15 @@ class GenvexConnectCTS400AlarmHandler:
         self.genvexNabto = genvexNabto
         self.activeAlarms = []
         self.updateHandlers = []
-        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL, self.on_change)
-        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS400WARNING, self.on_change)
-        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS400INFO, self.on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS400WARNING, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS400INFO, self._on_change)
 
     def _on_change(self, _old_value, _new_value):
         # Recalculate the active alarms
         criticalErrors = self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL)
-        warningErrors = self.genvexNabto.getvalue(GenvexNabtoDatapointKey.ALARM_CTS400WARNING)
-        infoErrors = self.genvexNabto.getvalue(GenvexNabtoDatapointKey.ALARM_CTS400INFO)
+        warningErrors = self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400WARNING)
+        infoErrors = self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400INFO)
 
         self.activeAlarms = []
         for i in range(0, 16):
