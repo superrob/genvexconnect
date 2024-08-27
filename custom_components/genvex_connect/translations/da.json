@@ -130,6 +130,9 @@
       "reheat_pwm": {
         "name": "Eftervarme PWM"
       },
+      "cts400_alarm": {
+        "name": "Nuværende Alarmer"
+      },
       "controlstate_602": {
         "name": "Status",
         "state": {
