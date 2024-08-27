@@ -132,6 +132,7 @@ class GenvexConnectSensorCO2(GenvexConnectEntityBase, SensorEntity):
         self._valueKey = valueKey
         self._attr_device_class = SensorDeviceClass.CO2
         self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_native_unit_of_measurement = "ppm"
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
