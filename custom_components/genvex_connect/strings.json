@@ -130,8 +130,11 @@
       "reheat_pwm": {
         "name": "Reheating PWM"
       },
-      "cts400_alarm": {
-        "name": "Active Alarms"
+      "cts400_alarmlist": {
+        "name": "Active Alarm List"
+      },
+      "cts400_alarmcount": {
+        "name": "Active Alarm Count"
       },
       "controlstate_602": {
         "name": "Status",
