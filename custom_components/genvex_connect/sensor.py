@@ -294,9 +294,9 @@ class GenvexConnectCTS400AlarmHandler:
 
     def _on_change(self, _old_value, _new_value):
         # Recalculate the active alarms
-        criticalErrors = self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL)
-        warningErrors = self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400WARNING)
-        infoErrors = self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400INFO)
+        criticalErrors = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL))
+        warningErrors = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400WARNING))
+        infoErrors = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS400INFO))
 
         self.activeAlarms = []
         for i in range(0, 16):
