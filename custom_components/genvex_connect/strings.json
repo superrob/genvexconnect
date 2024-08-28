@@ -204,6 +204,9 @@
       },
       "boost_enable": {
         "name": "Boost"
+      },
+      "ventilation_enable": {
+        "name": "Ventilation"
       }
     },
     "select": {

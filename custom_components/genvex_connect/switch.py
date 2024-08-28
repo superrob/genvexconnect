@@ -22,6 +22,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.HUMIDITY_CONTROL, "mdi:water-circle"))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_ENABLE):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.BOOST_ENABLE, "mdi:fan-chevron-up"))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.VENTILATION_ENABLE):
+        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.VENTILATION_ENABLE, "mdi:fan"))
 
     async_add_entities(new_entities)
 
