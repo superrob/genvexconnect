@@ -99,8 +99,8 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     @property
     def fan_mode(self):
         if self.genvexNabto._model_adapter.getModelName() == "CTS 400":
-            onOffState = self.genvexNabto.getValue(GenvexNabtoSetpointKey.GenvexNabtoSetpointKey.VENTILATION_DISABLE)
-            if onOffState == 1: 
+            onOffState = self.genvexNabto.getValue(GenvexNabtoSetpointKey.GenvexNabtoSetpointKey.VENTILATION_ENABLE)
+            if onOffState == 0: 
                 return FAN_OFF
         fanValue = self.genvexNabto.getValue(self._fanSetKey)
         return self.fan_modes()[fanValue]
@@ -121,10 +121,10 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
         
         if self.genvexNabto._model_adapter.getModelName() == "CTS 400":
             if speed == 0:
-                self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.VENTILATION_DISABLE, 1)
+                self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.VENTILATION_ENABLE, 0)
                 return
             else:                
-                self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.VENTILATION_DISABLE, 0)
+                self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.VENTILATION_ENABLE, 1)
         self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.FAN_SPEED, speed)
 
     @property
