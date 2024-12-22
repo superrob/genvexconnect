@@ -163,6 +163,7 @@
         "name": "Alarm",
         "state": {
           "state_0": "No Alarms",
+          "state_1": "Filter Alarm",
           "state_2": "Change Filter",
           "state_4": "External stop",
           "state_8": "T1 Sensor error",

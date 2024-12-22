@@ -248,6 +248,7 @@ class GenvexConnectSensorAlarmOptima270(GenvexConnectEntityBase, SensorEntity):
         self._attr_device_class = SensorDeviceClass.ENUM
         self._attr_options = [
             "state_0",
+            "state_1",
             "state_2",
             "state_4",
             "state_8",
