@@ -160,6 +160,56 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorCTS400AlarmCount(genvexNabto, alarmHandler))
         # Trigger the alarm handler to react on the starting state
         alarmHandler._on_change(0, 0)
+    # CTS 602 Heatpump
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_TEMP_AFTER_CONDENSER):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HPS_TEMP_AFTER_CONDENSER,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_TEMP_BEFORE_CONDENSER):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HPS_TEMP_BEFORE_CONDENSER,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_TEMP_BUFFERTANK):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HPS_TEMP_BUFFERTANK,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_TEMP_HEATPUMP_OUTDOOR):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HPS_TEMP_HEATPUMP_OUTDOOR,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_TEMP_PRESSURE_PIPE):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HPS_TEMP_PRESSURE_PIPE,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_CAPACITY_ACTUAL):
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_CAPACITY_ACTUAL, unitOfMeasurement="%"))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_OPERATION_STATE):
+        new_entities.append(GenvexConnectSensorCTS602Heatpump(genvexNabto, GenvexNabtoDatapointKey.HPS_OPERATION_STATE))
 
     async_add_entities(new_entities)
 
@@ -207,6 +257,54 @@ class GenvexConnectSensorEfficiency(GenvexConnectEntityBase, SensorEntity):
             return
 
         self._attr_native_value = ((supply - outside) / (extract - outside)) * 100
+
+
+class GenvexConnectSensorCTS602Heatpump(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, valueKey, valueKey)
+        self._valueKey = valueKey
+        self._attr_device_class = SensorDeviceClass.ENUM
+        self._attr_options = [
+            "state_0",
+            "state_1",
+            "state_2",
+            "state_3",
+            "state_4",
+            "state_5",
+            "state_6",
+            "state_7",
+            "state_8",
+            "state_9",
+            "state_10",
+            "state_11" "state_12",
+            "state_13",
+            "state_14",
+            "state_15",
+            "state_16",
+            "state_17",
+            "state_18",
+            "state_19",
+            "state_20",
+            "state_21",
+            "state_22",
+            "state_23",
+            "state_24",
+            "state_25",
+            "state_26",
+            "state_27",
+            "state_28",
+            "state_29",
+        ]
+        self._attr_native_value = "state_0"
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:heat-pump-outline"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = f"state_{int(self.genvexNabto.getValue(self._valueKey))}"
 
 
 class GenvexConnectSensorControlState602(GenvexConnectEntityBase, SensorEntity):
