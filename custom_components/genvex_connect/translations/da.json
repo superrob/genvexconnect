@@ -43,7 +43,7 @@
     },
     "binary_sensor": {
       "bypass_active": {
-        "name": "Bypass aktiv"
+        "name": "Bypass"
       },
       "summer_mode": {
         "name": "Sommer tilstand"
