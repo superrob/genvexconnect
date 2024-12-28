@@ -19,11 +19,32 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_SUPPLY):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_SUPPLY))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_SUPPLY,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EXTRACT):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_EXTRACT))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_EXTRACT,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_OUTSIDE):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_OUTSIDE))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_OUTSIDE,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
 
     if (
         genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_SUPPLY)
@@ -33,46 +54,100 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorEfficiency(genvexNabto))
 
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EXHAUST):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_EXHAUST))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_EXHAUST,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_ROOM):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_ROOM))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_ROOM,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_CONDENSER):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_CONDENSER))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_CONDENSER,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_EVAPORATOR):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.TEMP_EVAPORATOR))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_EVAPORATOR,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HOTWATER_TOP):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.HOTWATER_TOP))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HOTWATER_TOP,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HOTWATER_BOTTOM):
-        new_entities.append(GenvexConnectSensorTemperature(genvexNabto, GenvexNabtoDatapointKey.HOTWATER_BOTTOM))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.HOTWATER_BOTTOM,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
 
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HUMIDITY):
-        new_entities.append(GenvexConnectSensorHumidity(genvexNabto, GenvexNabtoDatapointKey.HUMIDITY))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto, GenvexNabtoDatapointKey.HUMIDITY, unitOfMeasurement="%", deviceClass=SensorDeviceClass.HUMIDITY
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY):
-        new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_SUPPLY, unitOfMeasurement="%"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT):
-        new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT, unitOfMeasurement="%"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.PREHEAT_PWM):
-        new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.PREHEAT_PWM))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.PREHEAT_PWM, unitOfMeasurement="%"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.REHEAT_PWM):
-        new_entities.append(GenvexConnectSensorDutycycle(genvexNabto, GenvexNabtoDatapointKey.REHEAT_PWM))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.REHEAT_PWM, unitOfMeasurement="%"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_SUPPLY):
-        new_entities.append(GenvexConnectSensorRPM(genvexNabto, GenvexNabtoDatapointKey.RPM_SUPPLY))
+        new_entities.append(
+            GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.RPM_SUPPLY, unitOfMeasurement="rpm", displayPrecision=0)
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_EXTRACT):
-        new_entities.append(GenvexConnectSensorRPM(genvexNabto, GenvexNabtoDatapointKey.RPM_EXTRACT))
+        new_entities.append(
+            GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.RPM_EXTRACT, unitOfMeasurement="rpm", displayPrecision=0)
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FAN_LEVEL_SUPPLY):
         new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.FAN_LEVEL_SUPPLY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FAN_LEVEL_EXTRACT):
         new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.FAN_LEVEL_EXTRACT))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.FILTER_DAYS):
-        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS, "d"))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoSetpointKey.FILTER_DAYS, unitOfMeasurement="d"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FILTER_DAYS_LEFT):
-        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoDatapointKey.FILTER_DAYS_LEFT, "d"))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.FILTER_DAYS_LEFT, unitOfMeasurement="d"))
 
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST):
-        new_entities.append(GenvexConnectSensorFilterdays(genvexNabto, GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST, ""))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.DEFORST_TIMESINCELAST))
 
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.CO2_LEVEL):
-        new_entities.append(GenvexConnectSensorCO2(genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL))
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL, unitOfMeasurement="ppm", deviceClass=SensorDeviceClass.CO2
+            )
+        )
 
     # Device specific sensors
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.CONTROLSTATE_602):
@@ -90,95 +165,20 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 class GenvexConnectSensorGeneric(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey):
+    def __init__(self, genvexNabto, valueKey, deviceClass=None, stateClass=None, unitOfMeasurement=None, displayPrecision=None):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_device_class = deviceClass
+        self._attr_state_class = stateClass
+        if unitOfMeasurement:
+            self._attr_native_unit_of_measurement = unitOfMeasurement
+        if displayPrecision:
+            self._attr_suggested_display_precision = displayPrecision
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
         self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
-
-
-class GenvexConnectSensorTemperature(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey):
-        super().__init__(genvexNabto, valueKey, valueKey)
-        self._valueKey = valueKey
-        self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
-        self._attr_device_class = SensorDeviceClass.TEMPERATURE
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-
-    def update(self) -> None:
-        """Fetch new state data for the sensor."""
-        self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
-
-
-class GenvexConnectSensorHumidity(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey):
-        super().__init__(genvexNabto, valueKey, valueKey)
-        self._valueKey = valueKey
-        self._attr_native_unit_of_measurement = "%"
-        self._attr_device_class = SensorDeviceClass.HUMIDITY
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-
-    def update(self) -> None:
-        """Fetch new state data for the sensor."""
-        self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
-
-
-class GenvexConnectSensorCO2(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey):
-        super().__init__(genvexNabto, valueKey, valueKey)
-        self._valueKey = valueKey
-        self._attr_device_class = SensorDeviceClass.CO2
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_native_unit_of_measurement = "ppm"
-
-    def update(self) -> None:
-        """Fetch new state data for the sensor."""
-        self._attr_native_value = self.genvexNabto.getValue(self._valueKey)
-
-
-class GenvexConnectSensorDutycycle(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey):
-        super().__init__(genvexNabto, valueKey, valueKey)
-        self._valueKey = valueKey
-        self._attr_native_unit_of_measurement = "%"
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-
-    def update(self) -> None:
-        """Fetch new state data for the sensor."""
-        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
-
-
-class GenvexConnectSensorRPM(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey):
-        super().__init__(genvexNabto, valueKey, valueKey)
-        self._valueKey = valueKey
-        self._attr_native_unit_of_measurement = "rpm"
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_suggested_display_precision = 0
-
-    def update(self) -> None:
-        """Fetch new state data for the sensor."""
-        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
-
-
-class GenvexConnectSensorFilterdays(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey, unit):
-        super().__init__(genvexNabto, valueKey, valueKey)
-        self._valueKey = valueKey
-        self._attr_native_unit_of_measurement = unit
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-
-    @property
-    def icon(self):
-        """Return the icon of the sensor."""
-        return "mdi:air-filter"
-
-    def update(self) -> None:
-        """Fetch new state data for the sensor."""
-        self._attr_native_value = f"{self.genvexNabto.getValue(self._valueKey)}"
 
 
 class GenvexConnectSensorEfficiency(GenvexConnectEntityBase, SensorEntity):
