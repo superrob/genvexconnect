@@ -226,13 +226,19 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 class GenvexConnectSensorGeneric(GenvexConnectEntityBase, SensorEntity):
     def __init__(
-        self, genvexNabto, valueKey, deviceClass=None, stateClass=None, unitOfMeasurement=None, displayPrecision=None, defaultEnabled=True
+        self,
+        genvexNabto,
+        valueKey,
+        deviceClass=None,
+        stateClass=SensorStateClass.MEASUREMENT,
+        unitOfMeasurement=None,
+        displayPrecision=None,
+        defaultEnabled=True,
     ):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
-        self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_device_class = deviceClass
         self._attr_state_class = stateClass
+        self._attr_device_class = deviceClass
         if unitOfMeasurement:
             self._attr_native_unit_of_measurement = unitOfMeasurement
         if displayPrecision:
