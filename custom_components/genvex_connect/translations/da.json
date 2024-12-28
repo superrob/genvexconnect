@@ -188,6 +188,65 @@
           "state_4194304": "Brand fejl - Brandboks 2",
           "state_8388608": "Rotor alarm"
         }
+      },
+      "hps_operation_state": {
+        "name": "Heatpump Operation State",
+        "state": {
+          "state_0": "Off",
+          "state_1": "Ready",
+          "state_2": "Hot water start up",
+          "state_3": "Hot water",
+          "state_4": "Heating start up",
+          "state_5": "Heating",
+          "state_6": "Heat pump stop",
+          "state_7": "El heating",
+          "state_8": "El hot water",
+          "state_9": "Forced cold pump",
+          "state_10": "Heat pump stop",
+          "state_11": "De-icing",
+          "state_12": "AIR de-icing",
+          "state_13": "Hotgas de-icing",
+          "state_14": "Drip delay",
+          "state_15": "Hot water - Heat pump stop",
+          "state_16": "Heating - Heat pump stop",
+          "state_17": "Stop",
+          "state_18": "Heating - Heat pump stop",
+          "state_19": "Hot water - Heat pump stop",
+          "state_20": "Pump exercise",
+          "state_21": "Forced start up",
+          "state_22": "Forced running",
+          "state_23": "Forced running",
+          "state_24": "Forced running - heat pump stop",
+          "state_25": "Manuel",
+          "state_26": "Cooling start",
+          "state_27": "Cooling",
+          "state_28": "Ext. stop",
+          "state_29": "Forced low speed"
+        }
+      },
+      "hps_capacity_actual": {
+        "name": "Varmepumpe Aktuel Kapacitet"
+      },
+      "hps_heatpump_active": {
+        "name": "Varmepumpe"
+      },
+      "hps_heater_active": {
+        "name": "Varmepumoe El-patron"
+      },
+      "hps_temp_after_condenser": {
+        "name": "Temperatur Efter Kodensator"
+      },
+      "hps_temp_before_condenser": {
+        "name": "Temperatur Før Kodensator"
+      },
+      "hps_temp_buffertank": {
+        "name": "Temperatur Buffer Tank"
+      },
+      "hps_temp_heatpump_outdoor": {
+        "name": "Temperatur Varmepumpe Udenfor"
+      },
+      "hps_temp_pressure_pipe": {
+        "name": "Temperatur Trykrør"
       }
     }, 
     "switch": {

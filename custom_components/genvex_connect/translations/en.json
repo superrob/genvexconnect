@@ -191,6 +191,65 @@
           "state_4194304": "Fire Box 2 failure",
           "state_8388608": "Rotor alarm"
         }
+      },
+      "hps_operation_state": {
+        "name": "Heatpump Operation State",
+        "state": {
+          "state_0": "Off",
+          "state_1": "Ready",
+          "state_2": "Hot water start up",
+          "state_3": "Hot water",
+          "state_4": "Heating start up",
+          "state_5": "Heating",
+          "state_6": "Heat pump stop",
+          "state_7": "El heating",
+          "state_8": "El hot water",
+          "state_9": "Forced cold pump",
+          "state_10": "Heat pump stop",
+          "state_11": "De-icing",
+          "state_12": "AIR de-icing",
+          "state_13": "Hotgas de-icing",
+          "state_14": "Drip delay",
+          "state_15": "Hot water - Heat pump stop",
+          "state_16": "Heating - Heat pump stop",
+          "state_17": "Stop",
+          "state_18": "Heating - Heat pump stop",
+          "state_19": "Hot water - Heat pump stop",
+          "state_20": "Pump exercise",
+          "state_21": "Forced start up",
+          "state_22": "Forced running",
+          "state_23": "Forced running",
+          "state_24": "Forced running - heat pump stop",
+          "state_25": "Manuel",
+          "state_26": "Cooling start",
+          "state_27": "Cooling",
+          "state_28": "Ext. stop",
+          "state_29": "Forced low speed"
+        }
+      },
+      "hps_capacity_actual": {
+        "name": "Heatpump Actual Capacity"
+      },
+      "hps_heatpump_active": {
+        "name": "Heatpump"
+      },
+      "hps_heater_active": {
+        "name": "Heatpump Heating Element"
+      },
+      "hps_temp_after_condenser": {
+        "name": "Temperature After Condenser"
+      },
+      "hps_temp_before_condenser": {
+        "name": "Temperature Before Condenser"
+      },
+      "hps_temp_buffertank": {
+        "name": "Temperature Buffer Tank"
+      },
+      "hps_temp_heatpump_outdoor": {
+        "name": "Temperature Heatpump Outdoor"
+      },
+      "hps_temp_pressure_pipe": {
+        "name": "Temperature High Pressure Pipe"
       }    
     },
     "switch": {
