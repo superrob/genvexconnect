@@ -109,6 +109,9 @@
       "fan_rpm_extract": {
         "name": "Fan RPM Extract"
       },
+      "rotor_speed": {
+        "name": "Rotor RPM"
+      },
       "filter_days": {
         "name": "Days since filter change"
       },

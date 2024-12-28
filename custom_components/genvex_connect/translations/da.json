@@ -109,6 +109,9 @@
       "fan_rpm_extract": {
         "name": "Ventilator RPM Fraluft"
       },
+      "rotor_speed": {
+        "name": "Rotor RPM"
+      },
       "filter_days": {
         "name": "Dage siden filter skift"
       },

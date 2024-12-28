@@ -130,6 +130,10 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(
             GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.RPM_EXTRACT, unitOfMeasurement="rpm", displayPrecision=0)
         )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.ROTOR_SPEED):
+        new_entities.append(
+            GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.ROTOR_SPEED, unitOfMeasurement="rpm", displayPrecision=0)
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FAN_LEVEL_SUPPLY):
         new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.FAN_LEVEL_SUPPLY))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FAN_LEVEL_EXTRACT):
