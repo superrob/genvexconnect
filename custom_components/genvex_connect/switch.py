@@ -13,9 +13,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.REHEATING):
-        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.REHEATING, "mdi:heating-coil"))
+        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.REHEATING, "mdi:heating-coil", defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.PREHEATING):
-        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.PREHEATING, "mdi:heating-coil"))
+        new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.PREHEATING, "mdi:heating-coil", defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.COOLING_ENABLE):
         new_entities.append(GenvexConnectSwitch(genvexNabto, GenvexNabtoSetpointKey.COOLING_ENABLE, "mdi:coolant-temperature"))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.HUMIDITY_CONTROL):
@@ -27,11 +27,12 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 class GenvexConnectSwitch(GenvexConnectEntityBase, SwitchEntity):
-    def __init__(self, genvexNabto, valueKey, icon):
+    def __init__(self, genvexNabto, valueKey, icon, defaultEnabled=True):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_device_class = SwitchDeviceClass.SWITCH
         self._icon = icon
+        self._attr_entity_registry_enabled_default = defaultEnabled
 
     @property
     def icon(self):

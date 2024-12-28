@@ -17,21 +17,21 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_OPENOFFSET))
     # Air supply level sliders
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL2, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL3):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL3, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL3, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL4):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL4, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL4, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL1):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL1, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL1, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL2):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL2, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL2, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL3, defaultEnabled=False))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4):
-        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4, enabledDefault=False))
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.EXTRACT_AIR_LEVEL4, defaultEnabled=False))
     # Boost time
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BOOST_TIME):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BOOST_TIME))
@@ -58,7 +58,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 class GenvexConnectNumber(GenvexConnectEntityBase, NumberEntity):
-    def __init__(self, genvexNabto, valueKey, enabledDefault=True):
+    def __init__(self, genvexNabto, valueKey, defaultEnabled=True):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_device_class = NumberDeviceClass.TEMPERATURE
@@ -66,7 +66,7 @@ class GenvexConnectNumber(GenvexConnectEntityBase, NumberEntity):
         self._attr_native_max_value = genvexNabto.getSetpointMaxValue(valueKey)
         self._attr_native_step = genvexNabto.getSetpointStep(valueKey)
         self._attr_entity_category = EntityCategory.CONFIG
-        self._attr_entity_registry_enabled_default = enabledDefault
+        self._attr_entity_registry_enabled_default = defaultEnabled
 
     async def async_set_native_value(self, value: float) -> None:
         """Update the current value."""
