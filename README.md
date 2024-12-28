@@ -1,11 +1,11 @@
 # Genvex Connect
-Component to directly integrate Genvex Connect and Nilan Gateway devices into Home Assistant.
-The integrationen uses my own libary [GenvexNabto](https://github.com/superrob/genvexnabto) which handles all communication with the devices locally. Have a look in that repo for more information about the more technical side of the project.
+This component integrates Genvex Connect and Nilan Gateway devices directly into Home Assistant.
+It uses the [GenvexNabto](https://github.com/superrob/genvexnabto) library, which manages local communication with the devices. For more technical details about the project, refer to that repository.
 
-This integration needs the user to have an Genvex Connect or Nilan gateway connected to their device or own the newer Optima devices, which already have integrated gateways.
+To use this integration, an official gateway is required. This can be either a Genvex Connect gateway or a Nilan gateway. Newer Genvex Optima devices come with a built-in gateway on the mainboard and only require an Ethernet connection.
 
 ### Supported controller models
-|Controller         | Gateway requiured     | Supported       | Tested  |
+|Controller         | Gateway required     | Supported       | Tested  |
 |------------------:|:---------------------:|:---------------:|:-------:|
 |Optima 250         | Yes, internet gateway | ✅              | ✅      |
 |Optima 251         | Yes, internet gateway | ✅              | ✅      |
@@ -37,8 +37,9 @@ The integration should search for your device and let you choose which one to us
 Then if all goes well, your device should be added and working in Home Assistant.
 
 ## A little note to Genvex/Nilan
-I know fully well that you have the ability to remotely update your devices and closing local connections are quite simple to do. Please do not use that power irresponsibly. The method of connecting locally does require you to know the exact email used in the app and the capabilities are the same as the ones your users connecting directly through Modbus have. This shouldn't be a security concern and only gives your Gateway solutions much more value to the end user. Might i suggest that some might choose to buy your additional product, instead of a thirdparty solution?
+I understand that you have the ability to remotely update your devices, and that closing local connections is straightforward. However, please use this power responsibly.
+The local communication requires the email associated with the app as the password, making misuse highly unlikely. The capabilities are on par with, or even more limited than direct Modbus connections.
+This should not be considered a security concern. It also enhances the value of your Gateway solutions for the end user.
 
 # Obligatory statement
-I am not personally or in any way responsible for any damages should you choose to use the integration. No warranty provided. 
-Be especially observant when trying the integration with untested controller models and settings values.
+The contributors are not responsible for any damages resulting from the use of this integration. No warranty is provided.
