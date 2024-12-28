@@ -119,9 +119,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT):
         new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.DUTYCYCLE_EXTRACT, unitOfMeasurement="%"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.PREHEAT_PWM):
-        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.PREHEAT_PWM, unitOfMeasurement="%"))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.PREHEAT_PWM, unitOfMeasurement="%", enabledDefault=False))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.REHEAT_PWM):
-        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.REHEAT_PWM, unitOfMeasurement="%"))
+        new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.REHEAT_PWM, unitOfMeasurement="%", enabledDefault=False))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.RPM_SUPPLY):
         new_entities.append(
             GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.RPM_SUPPLY, unitOfMeasurement="rpm", displayPrecision=0)
@@ -132,7 +132,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.ROTOR_SPEED):
         new_entities.append(
-            GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.ROTOR_SPEED, unitOfMeasurement="rpm", displayPrecision=0)
+            GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.ROTOR_SPEED, unitOfMeasurement="rpm", displayPrecision=0, enabledDefault=False)
         )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.FAN_LEVEL_SUPPLY):
         new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.FAN_LEVEL_SUPPLY))
@@ -219,7 +219,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 class GenvexConnectSensorGeneric(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, valueKey, deviceClass=None, stateClass=None, unitOfMeasurement=None, displayPrecision=None):
+    def __init__(self, genvexNabto, valueKey, deviceClass=None, stateClass=None, unitOfMeasurement=None, displayPrecision=None, enabledDefault=True):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_state_class = SensorStateClass.MEASUREMENT
@@ -229,6 +229,7 @@ class GenvexConnectSensorGeneric(GenvexConnectEntityBase, SensorEntity):
             self._attr_native_unit_of_measurement = unitOfMeasurement
         if displayPrecision:
             self._attr_suggested_display_precision = displayPrecision
+        self._attr_entity_registry_enabled_default = enabledDefault
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
