@@ -44,7 +44,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 unitOfMeasurement=UnitOfTemperature.CELSIUS,
                 deviceClass=SensorDeviceClass.TEMPERATURE,
             )
-        )        
+        )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_HEATER):
         new_entities.append(
             GenvexConnectSensorGeneric(
@@ -52,10 +52,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 GenvexNabtoDatapointKey.TEMP_HEATER,
                 unitOfMeasurement=UnitOfTemperature.CELSIUS,
                 deviceClass=SensorDeviceClass.TEMPERATURE,
-                defaultEnabled=False
+                defaultEnabled=False,
             )
         )
-
 
     if (
         genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_SUPPLY)
@@ -166,7 +165,11 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.CO2_LEVEL):
         new_entities.append(
             GenvexConnectSensorGeneric(
-                genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL, unitOfMeasurement="ppm", deviceClass=SensorDeviceClass.CO2, defaultEnabled=False
+                genvexNabto,
+                GenvexNabtoDatapointKey.CO2_LEVEL,
+                unitOfMeasurement="ppm",
+                deviceClass=SensorDeviceClass.CO2,
+                defaultEnabled=False,
             )
         )
 
