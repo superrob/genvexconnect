@@ -155,7 +155,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.CO2_LEVEL):
         new_entities.append(
             GenvexConnectSensorGeneric(
-                genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL, unitOfMeasurement="ppm", deviceClass=SensorDeviceClass.CO2
+                genvexNabto, GenvexNabtoDatapointKey.CO2_LEVEL, unitOfMeasurement="ppm", deviceClass=SensorDeviceClass.CO2, defaultEnabled=False
             )
         )
 
