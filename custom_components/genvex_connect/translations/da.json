@@ -82,6 +82,9 @@
       "temp_evaporator": {
         "name": "Temperatur Fordamper"
       },
+      "temp_heater": {
+        "name": "Temperature Varme"
+      },
       "hotwater_top": {
         "name": "Temperatur Varmtvand Top"
       },

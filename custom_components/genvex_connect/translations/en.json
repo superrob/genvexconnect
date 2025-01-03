@@ -82,6 +82,9 @@
       "temp_evaporator": {
         "name": "Temperature Evaporator"
       },
+      "temp_heater": {
+        "name": "Temperature Heater"
+      },
       "hotwater_top": {
         "name": "Temperature Hotwater Top"
       },
