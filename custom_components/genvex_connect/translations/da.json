@@ -83,7 +83,7 @@
         "name": "Temperatur Fordamper"
       },
       "temp_heater": {
-        "name": "Temperature Varme"
+        "name": "Temperatur Varme"
       },
       "hotwater_top": {
         "name": "Temperatur Varmtvand Top"
