@@ -64,6 +64,9 @@
       "temp_supply": {
         "name": "Temperatur Tilluft"
       },
+      "temp_supply_after_heater": {
+        "name": "Temperatur Tilluft (Efter varmelegme)"
+      },
       "temp_outside": {
         "name": "Temperatur Udeluft"
       },

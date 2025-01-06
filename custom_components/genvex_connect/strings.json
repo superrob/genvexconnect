@@ -64,6 +64,9 @@
       "temp_supply": {
         "name": "Temperature Supply air"
       },
+      "temp_supply_after_heater": {
+        "name": "Temperature Supply air (After heater)"
+      },
       "temp_outside": {
         "name": "Temperature Outside air"
       },
