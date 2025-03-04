@@ -172,7 +172,7 @@
         "name": "Alarm",
         "state": {
           "state_0": "Ingen alarmer",
-          "state_1": "Filter Alarm",
+          "state_1": "Filter skift",
           "state_2": "Filter skift",
           "state_4": "Stop Styring",
           "state_8": "T1 Følerfejl",
