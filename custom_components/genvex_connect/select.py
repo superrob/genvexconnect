@@ -21,12 +21,23 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.COOLING_OFFSET):
         new_entities.append(GenvexConnectSelectCoolingOffset(genvexNabto, GenvexNabtoSetpointKey.COOLING_OFFSET))
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.CENTRALHEAT_PUMP_MODE):
-        new_entities.append(GenvexConnectSelectGeneric(genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_PUMP_MODE, ["only_when_active", "continuous"], "mdi:pump"))
+        new_entities.append(
+            GenvexConnectSelectGeneric(
+                genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_PUMP_MODE, ["only_when_active", "continuous"], "mdi:pump"
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.CENTRALHEAT_TYPE):
-        new_entities.append(GenvexConnectSelectGeneric(genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_TYPE, ["off", "electric", "heatpump", "both_heatpump_priority"], "mdi:heat"))
+        new_entities.append(
+            GenvexConnectSelectGeneric(
+                genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_TYPE, ["off", "electric", "heatpump", "both_heatpump_priority"], "mdi:heat"
+            )
+        )
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.CENTRALHEAT_SELECT):
-        new_entities.append(GenvexConnectSelectGeneric(genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_SELECT, ["only_pump", "always_heating", "heating_when_low"], "mdi:heat"))
-        
+        new_entities.append(
+            GenvexConnectSelectGeneric(
+                genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_SELECT, ["only_pump", "always_heating", "heating_when_low"], "mdi:heat"
+            )
+        )
 
     async_add_entities(new_entities)
 

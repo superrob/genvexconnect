@@ -303,17 +303,13 @@ class GenvexConnectSensorEfficiency(GenvexConnectEntityBase, SensorEntity):
 
         self._attr_native_value = ((supply - outside) / (extract - outside)) * 100
 
+
 class GenvexConnectSensorSacrificialAnode(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_device_class = SensorDeviceClass.ENUM
-        self._attr_options = [
-            "off",
-            "on",
-            "service",
-            "error"
-        ]
+        self._attr_options = ["off", "on", "service", "error"]
         self._attr_native_value = "off"
 
     @property
@@ -324,6 +320,7 @@ class GenvexConnectSensorSacrificialAnode(GenvexConnectEntityBase, SensorEntity)
     def update(self) -> None:
         """Fetch new state data for the sensor."""
         self._attr_native_value = self._attr_options[int(self.genvexNabto.getValue(self._valueKey))]
+
 
 class GenvexConnectSensorCTS602Heatpump(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):
