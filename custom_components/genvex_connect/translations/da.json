@@ -261,7 +261,13 @@
           "service": "Service",
           "error": "Fejl"
         }
-      }
+      },
+      "centralheat_temp_supply": {
+        "name": "Varmekreds Tilførsel Temperatur"
+      },
+      "centralheat_temp_return": {
+        "name": "Varmekeds Retur Temperatur"
+      } 
     }, 
     "switch": {
       "humidity_control": {

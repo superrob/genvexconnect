@@ -261,7 +261,13 @@
           "service": "Service",
           "error": "Error"
         }
-      }      
+      },
+      "centralheat_temp_supply": {
+        "name": "Central Heating Supply Temperature"
+      },
+      "centralheat_temp_return": {
+        "name": "Central Heating Return Temperature"
+      }     
     },
     "switch": {
       "humidity_control": {

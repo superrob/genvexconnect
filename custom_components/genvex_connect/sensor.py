@@ -247,6 +247,25 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.SACRIFICIAL_ANODE):
         new_entities.append(GenvexConnectSensorSacrificialAnode(genvexNabto, GenvexNabtoDatapointKey.SACRIFICIAL_ANODE))
 
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.CENTRALHEAT_TEMP_SUPPLY):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.CENTRALHEAT_TEMP_SUPPLY,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.CENTRALHEAT_TEMP_RETURN):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.CENTRALHEAT_TEMP_RETURN,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+            )
+        )
+
     async_add_entities(new_entities)
 
 
