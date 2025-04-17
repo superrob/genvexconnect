@@ -54,6 +54,11 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.TEMP_SETPOINT):
         new_entities.append(GenvexConnectNumberSetpointTemperature(genvexNabto, GenvexNabtoSetpointKey.TEMP_SETPOINT))
 
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.CENTRALHEAT_SUPPLY_MIN):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_SUPPLY_MIN))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.CENTRALHEAT_SUPPLY_MAX):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.CENTRALHEAT_SUPPLY_MAX))
+
     async_add_entities(new_entities)
 
 

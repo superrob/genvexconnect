@@ -282,7 +282,14 @@
     },
     "select": {
       "fan_speed_select": {
-        "name": "Ventilator trin"
+        "name": "Ventilator trin",
+        "options": {
+          "Level 0": "Niveau 0",
+          "Level 1": "Niveau 1",
+          "Level 2": "Niveau 2",
+          "Level 3": "Niveau 3",
+          "Level 4": "Niveau 4"
+        }
       },
       "antilegionella_day": {
         "name": "Antilegionella"
@@ -292,6 +299,30 @@
       },
       "cooling_offset": {
         "name": "Kølning start offset"
+      },
+      "centralheat_pump_mode": {
+        "name": "Varmekreds pumpe tilstand",
+        "options": {
+          "only_when_active": "Kun når kreds aktiv", 
+          "continuous": "Konstant"
+        }
+      },
+      "centralheat_type": {
+        "name": "Varmekreds varmekilde",
+        "options": {
+          "off": "Fra",
+          "electric": "El-patron",
+          "heatpump": "Varmepumpe",
+          "both_heatpump_priority": "Begge, varmepumpe prioritet"
+        }
+      },
+      "centralheat_select": {
+        "name": "Varmekreds tilstand",
+        "options": {
+          "only_pump": "Kun pumpe, frostsikring",
+          "always_heating": "Altid varme",
+          "heating_when_low": "Varme når rum temperatur er lav"
+        }
       }
     },
     "number": {
@@ -348,6 +379,12 @@
       },
       "filter_months_setting": {
         "name": "Måneder mellem filterskift"
+      },
+      "centralheat_supply_min": {
+        "name": "Varmekreds min temperatur"
+      },
+      "centralheat_supply_max": {
+        "name": "Varmekreds max temperatur"
       }
     }
   }

@@ -285,7 +285,14 @@
     },
     "select": {
       "fan_speed_select": {
-        "name": "Fan level"
+        "name": "Fan level",
+        "options": {
+          "Level 0": "Level 0",
+          "Level 1": "Level 1",
+          "Level 2": "Level 2",
+          "Level 3": "Level 3",
+          "Level 4": "Level 4"
+        }
       },
       "antilegionella_day": {
         "name": "Antilegionella"
@@ -295,6 +302,30 @@
       },
       "cooling_offset": {
         "name": "Cooling start offset"
+      },
+      "centralheat_pump_mode": {
+        "name": "Central heating pump mode",
+        "options": {
+          "only_when_active": "Only when active", 
+          "continuous": "Continuous"
+        }
+      },
+      "centralheat_type": {
+        "name": "Central heating source",
+        "options": {
+          "off": "Off",
+          "electric": "Electric",
+          "heatpump": "Heatpump",
+          "both_heatpump_priority": "Both, heatpump priority"
+        }
+      },
+      "centralheat_select": {
+        "name": "Central heating mode",
+        "options": {
+          "only_pump": "Only pump, freeze secure",
+          "always_heating": "Always heating",
+          "heating_when_low": "Heating when room temperature low"
+        }
       }
     },
     "number": {
@@ -351,6 +382,12 @@
       },
       "filter_months_setting": {
         "name": "Months between filterchange"
+      },
+      "centralheat_supply_min": {
+        "name": "Central heating min temperature"
+      },
+      "centralheat_supply_max": {
+        "name": "Central heating max temperature"
       }
     }
   }
