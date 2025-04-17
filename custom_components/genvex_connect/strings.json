@@ -298,13 +298,38 @@
         }
       },
       "antilegionella_day": {
-        "name": "Antilegionella"
+        "name": "Antilegionella",
+        "state": {
+          "off": "Off", 
+          "monday": "Monday", 
+          "tuesday": "Tuesday", 
+          "wednesday": "Wednesday",
+          "thursday": "Thursday", 
+          "friday": "Friday", 
+          "saturday": "Saturday", 
+          "sunday": "Sunday"
+        }
       },
       "cooling_priority": {
-        "name": "Cooling Priority"
+        "name": "Cooling Priority",
+        "state": {
+          "hot_water": "Hot water", 
+          "supply_air": "Supply air"
+        }
       },
       "cooling_offset": {
-        "name": "Cooling start offset"
+        "name": "Cooling start offset",
+        "state": {
+          "deactivated": "Cooling deactivated",
+          "0": "+0 hours",
+          "1": "+1 hour",
+          "2": "+2 hours",
+          "3": "+3 hours",
+          "4": "+4 hours",
+          "5": "+5 hours",
+          "7": "+7 hours",
+          "10": "+10 hours"
+        }
       },
       "centralheat_pump_mode": {
         "name": "Central heating pump mode",

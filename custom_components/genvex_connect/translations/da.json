@@ -298,13 +298,38 @@
         }
       },
       "antilegionella_day": {
-        "name": "Antilegionella"
+        "name": "Antilegionella",
+        "state": {
+          "off": "Fra", 
+          "monday": "Mandag", 
+          "tuesday": "Tirsdag", 
+          "wednesday": "Onsdag",
+          "thursday": "Torsdag", 
+          "friday": "Fredag", 
+          "saturday": "Lørdag", 
+          "sunday": "Søndag"
+        }
       },
       "cooling_priority": {
-        "name": "Kølnings prioritet"
+        "name": "Kølnings prioritet",
+        "state": {
+          "hot_water": "Varmt vand", 
+          "supply_air": "Tilluft"
+        }
       },
       "cooling_offset": {
-        "name": "Kølning start offset"
+        "name": "Kølning start offset",
+        "state": {
+          "deactivated": "Køling deaktiveret",
+          "0": "+0 time",
+          "1": "+1 timer",
+          "2": "+2 timer",
+          "3": "+3 timer",
+          "4": "+4 timer",
+          "5": "+5 timer",
+          "7": "+7 timer",
+          "10": "+10 timer"
+        }
       },
       "centralheat_pump_mode": {
         "name": "Varmekreds pumpe tilstand",
