@@ -290,11 +290,11 @@
       "fan_speed_select": {
         "name": "Ventilator trin",
         "state": {
-          "Level 0": "Niveau 0",
-          "Level 1": "Niveau 1",
-          "Level 2": "Niveau 2",
-          "Level 3": "Niveau 3",
-          "Level 4": "Niveau 4"
+          "0": "Niveau 0",
+          "1": "Niveau 1",
+          "2": "Niveau 2",
+          "3": "Niveau 3",
+          "4": "Niveau 4"
         }
       },
       "antilegionella_day": {
