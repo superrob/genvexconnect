@@ -289,7 +289,7 @@
     "select": {
       "fan_speed_select": {
         "name": "Ventilator trin",
-        "options": {
+        "state": {
           "Level 0": "Niveau 0",
           "Level 1": "Niveau 1",
           "Level 2": "Niveau 2",
@@ -308,14 +308,14 @@
       },
       "centralheat_pump_mode": {
         "name": "Varmekreds pumpe tilstand",
-        "options": {
+        "state": {
           "only_when_active": "Kun når kreds aktiv", 
           "continuous": "Konstant"
         }
       },
       "centralheat_type": {
         "name": "Varmekreds varmekilde",
-        "options": {
+        "state": {
           "off": "Fra",
           "electric": "El-patron",
           "heatpump": "Varmepumpe",
@@ -324,7 +324,7 @@
       },
       "centralheat_select": {
         "name": "Varmekreds tilstand",
-        "options": {
+        "state": {
           "only_pump": "Kun pumpe, frostsikring",
           "always_heating": "Altid varme",
           "heating_when_low": "Varme når rum temperatur er lav"
