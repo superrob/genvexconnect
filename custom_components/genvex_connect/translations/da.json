@@ -47,10 +47,7 @@
       },
       "summer_mode": {
         "name": "Sommer tilstand"
-      },
-      "sacrificial_anode": {
-        "name": "Offeranode"
-      },      
+      },    
       "defrost_active": {
         "name": "Deice aktiv"
       }
@@ -255,6 +252,15 @@
       },
       "hps_temp_pressure_pipe": {
         "name": "Temperatur Trykrør"
+      },
+      "sacrificial_anode": {
+        "name": "Offeranode",
+        "state": {
+          "off": "Fra",
+          "on": "Til",
+          "service": "Service",
+          "error": "Fejl"
+        }
       }
     }, 
     "switch": {

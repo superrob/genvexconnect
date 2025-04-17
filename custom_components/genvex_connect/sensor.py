@@ -244,6 +244,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_CAPACITY_ACTUAL, unitOfMeasurement="%"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_OPERATION_STATE):
         new_entities.append(GenvexConnectSensorCTS602Heatpump(genvexNabto, GenvexNabtoDatapointKey.HPS_OPERATION_STATE))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.SACRIFICIAL_ANODE):
+        new_entities.append(GenvexConnectSensorSacrificialAnode(genvexNabto, GenvexNabtoDatapointKey.SACRIFICIAL_ANODE))
 
     async_add_entities(new_entities)
 
@@ -301,6 +303,27 @@ class GenvexConnectSensorEfficiency(GenvexConnectEntityBase, SensorEntity):
 
         self._attr_native_value = ((supply - outside) / (extract - outside)) * 100
 
+class GenvexConnectSensorSacrificialAnode(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, valueKey):
+        super().__init__(genvexNabto, valueKey, valueKey)
+        self._valueKey = valueKey
+        self._attr_device_class = SensorDeviceClass.ENUM
+        self._attr_options = [
+            "off",
+            "on",
+            "service",
+            "error"
+        ]
+        self._attr_native_value = "off"
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:water-opacity"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = self._attr_options[int(self.genvexNabto.getValue(self._valueKey))]
 
 class GenvexConnectSensorCTS602Heatpump(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, valueKey):

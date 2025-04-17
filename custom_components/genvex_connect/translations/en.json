@@ -47,10 +47,7 @@
       },
       "summer_mode": {
         "name": "Summer mode"
-      },
-      "sacrificial_anode": {
-        "name": "Sacrificial anode"
-      },      
+      },     
       "defrost_active": {
         "name": "Defrost active"
       }
@@ -258,6 +255,15 @@
       },
       "hps_temp_pressure_pipe": {
         "name": "Temperature High Pressure Pipe"
+      },
+      "sacrificial_anode": {
+        "name": "Sacrificial Anode",
+        "state": {
+          "off": "Off",
+          "on": "On",
+          "service": "Service",
+          "error": "Error"
+        }
       }    
     },
     "switch": {
