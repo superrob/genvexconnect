@@ -287,7 +287,7 @@
       }
     },
     "select": {
-      "fan_speed_select": {
+      "fan_speed": {
         "name": "Ventilator trin",
         "state": {
           "0": "Niveau 0",

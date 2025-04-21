@@ -287,7 +287,7 @@
       }
     },
     "select": {
-      "fan_speed_select": {
+      "fan_speed": {
         "name": "Fan level",
         "state": {
           "0": "Level 0",

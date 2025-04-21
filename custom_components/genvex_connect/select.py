@@ -74,7 +74,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 class GenvexConnectSelectGeneric(GenvexConnectEntityBase, SelectEntity):
     def __init__(self, genvexNabto, valueKey, options, icon):
-        super().__init__(genvexNabto, f"{valueKey}_select", valueKey)
+        super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_options = options
         self._icon = icon
