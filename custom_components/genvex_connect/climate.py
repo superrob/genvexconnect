@@ -73,14 +73,28 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
     @property
     def hvac_modes(self):
+        if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
+            return [HVACMode.AUTO, HVACMode.COOL, HVACMode.HEAT]
         return [HVACMode.AUTO]
 
     @property
     def hvac_mode(self):
+        if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
+            current = self.genvexNabto.getValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET)
+            if current == 1:
+                return HVACMode.HEAT
+            elif current == 2:
+                return HVACMode.COOL
         return HVACMode.AUTO
 
-    def set_hvac_mode(self, _hvac_mode):
-        pass
+    async def async_set_hvac_mode(self, _hvac_mode):
+        if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
+            value = 3
+            if (_hvac_mode == HVACMode.COOL):
+                value = 2
+            elif _hvac_mode == HVACMode.HEAT:
+                value = 1
+            self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET, value)
 
     @property
     def hvac_action(self):
@@ -89,17 +103,13 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
         return HVACAction.FAN
 
     @property
-    def hvac_mode(self):
-        return HVACMode.AUTO
-
-    @property
     def fan_modes(self):
         return [FAN_OFF, FAN_LOW, FAN_MIDDLE, FAN_MEDIUM, FAN_HIGH]
 
     @property
     def fan_mode(self):
         if self.genvexNabto._model_adapter.getModelName() == "CTS 400":
-            onOffState = self.genvexNabto.getValue(GenvexNabtoSetpointKey.VENTILATION_ENABLE)
+            onOffState = self.genvexNabto.getValue(GenvexNabtoSetpointKey.GenvexNabtoSetpointKey.VENTILATION_ENABLE)
             if onOffState == 0:
                 return FAN_OFF
         fanValue = self.genvexNabto.getValue(self._fanSetKey)
@@ -108,16 +118,17 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     async def async_set_fan_mode(self, fan_mode: str) -> None:
         _LOGGER.info(f"Wanted to set fan mode to {fan_mode}")
         speed = 2
-        if fan_mode == FAN_OFF:
-            speed = 0
-        elif fan_mode == FAN_LOW:
-            speed = 1
-        elif fan_mode == FAN_MIDDLE:
-            speed = 2
-        elif fan_mode == FAN_MEDIUM:
-            speed = 3
-        elif fan_mode == FAN_HIGH:
-            speed = 4
+        match fan_mode:
+            case FAN_OFF:
+                speed = 0
+            case FAN_LOW:
+                speed = 1
+            case FAN_MIDDLE:
+                speed = 2
+            case FAN_MEDIUM:
+                speed = 3
+            case FAN_HIGH:
+                speed = 4
 
         if self.genvexNabto._model_adapter.getModelName() == "CTS 400":
             if speed == 0:
