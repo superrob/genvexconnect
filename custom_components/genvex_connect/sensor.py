@@ -65,7 +65,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 defaultEnabled=False,
             )
         )
-    
+
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_FROSTPROTECTION):
         new_entities.append(
             GenvexConnectSensorGeneric(
