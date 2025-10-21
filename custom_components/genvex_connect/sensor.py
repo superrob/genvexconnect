@@ -65,6 +65,17 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 defaultEnabled=False,
             )
         )
+    
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_FROSTPROTECTION):
+        new_entities.append(
+            GenvexConnectSensorGeneric(
+                genvexNabto,
+                GenvexNabtoDatapointKey.TEMP_FROSTPROTECTION,
+                unitOfMeasurement=UnitOfTemperature.CELSIUS,
+                deviceClass=SensorDeviceClass.TEMPERATURE,
+                defaultEnabled=False,
+            )
+        )
 
     if (
         genvexNabto.providesValue(GenvexNabtoDatapointKey.TEMP_SUPPLY)
