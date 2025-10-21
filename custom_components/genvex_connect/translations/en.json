@@ -85,6 +85,9 @@
       "temp_heater": {
         "name": "Temperature Heater"
       },
+      "temp_frostprotection": {
+        "name": "Temperature Frost Protection"
+      },
       "hotwater_top": {
         "name": "Temperature Hotwater Top"
       },
