@@ -73,24 +73,34 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
 
     @property
     def hvac_modes(self):
+        if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
+            return [HVACMode.AUTO, HVACMode.COOL, HVACMode.HEAT]
         return [HVACMode.AUTO]
 
     @property
     def hvac_mode(self):
+        if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
+            current = self.genvexNabto.getValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET)
+            if current == 1:
+                return HVACMode.HEAT
+            elif current == 2:
+                return HVACMode.COOL
         return HVACMode.AUTO
 
-    def set_hvac_mode(self, _hvac_mode):
-        pass
+    async def async_set_hvac_mode(self, _hvac_mode):
+        if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
+            value = 3
+            if (_hvac_mode == HVACMode.COOL):
+                value = 2
+            elif _hvac_mode == HVACMode.HEAT:
+                value = 1
+            self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET, value)
 
     @property
     def hvac_action(self):
         if self.genvexNabto.getValue(self._fanSetKey) == 0:
             return HVACAction.OFF
         return HVACAction.FAN
-
-    @property
-    def hvac_mode(self):
-        return HVACMode.AUTO
 
     @property
     def fan_modes(self):
