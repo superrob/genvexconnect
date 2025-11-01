@@ -90,7 +90,7 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     async def async_set_hvac_mode(self, _hvac_mode):
         if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
             value = 3
-            if (_hvac_mode == HVACMode.COOL):
+            if _hvac_mode == HVACMode.COOL:
                 value = 2
             elif _hvac_mode == HVACMode.HEAT:
                 value = 1
