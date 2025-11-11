@@ -202,7 +202,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL):
         alarmHandler = GenvexConnectCTS400AlarmHandler(genvexNabto)
         new_entities.append(GenvexConnectSensorCTS400AlarmList(genvexNabto, alarmHandler))
-        new_entities.append(GenvexConnectSensorCTS400AlarmCount(genvexNabto, alarmHandler))
+        new_entities.append(GenvexConnectSensorCTSAlarmCount(genvexNabto, alarmHandler))
+        # Trigger the alarm handler to react on the starting state
+        alarmHandler._on_change(0, 0)
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.ALARM_CTS602NO1):
+        alarmHandler = GenvexConnectCTS602AlarmHandler(genvexNabto)
+        new_entities.append(GenvexConnectSensorCTSAlarm602List(genvexNabto, alarmHandler))
+        new_entities.append(GenvexConnectSensorCTSAlarmCount(genvexNabto, alarmHandler))
         # Trigger the alarm handler to react on the starting state
         alarmHandler._on_change(0, 0)
     # CTS 602 Heatpump
@@ -568,9 +574,172 @@ class GenvexConnectSensorCTS400AlarmList(GenvexConnectEntityBase, SensorEntity):
         self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))
 
 
+class GenvexConnectCTS602AlarmHandler:
+    def __init__(self, genvexNabto) -> None:
+        self.genvexNabto = genvexNabto
+        self.activeAlarms = []
+        self.updateHandlers = []
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS602NO1, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS602NO2, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_CTS602NO3, self._on_change)
+
+    def _on_change(self, _old_value, _new_value):
+        # Recalculate the active alarms
+        alarm1 = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS602NO1))
+        alarm2 = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS602NO2))
+        alarm3 = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_CTS602NO3))
+
+        self.activeAlarms = []
+        if alarm1 != 0:
+            self.activeAlarms.append(alarm1)
+        if alarm2 != 0:
+            self.activeAlarms.append(alarm2)
+        if alarm3 != 0:
+            self.activeAlarms.append(alarm3)
+
+        # Trigger an update of any sensors listening on this handler.
+        for updateMethod in self.updateHandlers:
+            updateMethod(0, 0)
+
+    def getActiveAlarmCount(self):
+        return len(self.activeAlarms)
+
+    def getActiveAlarms(self):
+        return self.activeAlarms
+
+    def addUpdateHandler(self, updateMethod: Callable[[int, int], None]):
+        self.updateHandlers.append(updateMethod)
+
+
+class GenvexConnectSensorCTS602AlarmList(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, alarmHandler: GenvexConnectCTS602AlarmHandler):
+        super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
+        self._alarmHandler = alarmHandler
+        self._alarmHandler.addUpdateHandler(self._on_change)
+        self._alarmTextValues = {
+            1: "01 - Hardware error",
+            2: "02 - Timeout error",
+            3: "03 - Firealarm activated",
+            4: "04 - Pressure switch error",
+            5: "05 - Open door",
+            6: "06 - De-icing error",
+            7: "07 - Frost in water heating element",
+            8: "08 - Frost thermostat triggered",
+            9: "09 - High temperature electric boiler",
+            10: "10 - Overheating electric surface",
+            11: "11 - Low airflow over electric surface",
+            12: "12 - Thermal fuse tripped",
+            13: "13 - High temperature el. supplement hot water",
+            14: "14 - Main sensor defect",
+            15: "15 - Low room temperature",
+            16: "16 - Software error",
+            17: "17 - Watchdog error",
+            18: "18 - Database content changed",
+            19: "19 - Change filter",
+            20: "20 - Error in legionella treatment",
+            21: "21 - Set date and time",
+            22: "22 - Error supply air temperature",
+            23: "23 - Error temperature hot water",
+            24: "24 - Error temperature central heating",
+            25: "Error25",
+            26: "Error26",
+            27: "27 - T1 short-circuited",
+            28: "28 - T1 disconnected",
+            29: "29 - T2 short-circuited",
+            30: "30 - T2 disconnected",
+            31: "31 - T3 short-circuited",
+            32: "32 - T3 disconnected",
+            33: "33 - T4 short-circuited",
+            34: "34 - T4 disconnected",
+            35: "35 - T5 short-circuited",
+            36: "36 - T5 disconnected",
+            37: "37 - T6 short-circuited",
+            38: "38 - T6 disconnected",
+            39: "39 - T7 short-circuited",
+            40: "40 - T7 disconnected",
+            41: "41 - T8 short-circuited",
+            42: "42 - T8 disconnected",
+            43: "43 - T9 short-circuited",
+            44: "44 - T9 disconnected",
+            45: "45 - T10 short-circuited",
+            46: "46 - T10 disconnected",
+            47: "47 - T11 short-circuited",
+            48: "48 - T11 disconnected",
+            49: "49 - T12 short-circuited",
+            50: "50 - T12 disconnected",
+            51: "51 - T13 short-circuited",
+            52: "52 - T13 disconnected",
+            53: "53 - T14 short-circuited",
+            54: "54 - T14 disconnected",
+            55: "55 - T15 short-circuited",
+            56: "56 - T15 disconnected",
+            57: "57 - T16 short-circuited",
+            58: "58 - T16 disconnected",
+            59: "59 - T17 short-circuited",
+            60: "60 - T17 disconnected",
+            61: "Error61",
+            62: "Error62",
+            63: "Error63",
+            64: "Error64",
+            65: "Error65",
+            66: "Error66",
+            67: "Error67",
+            68: "Error68",
+            69: "Error69",
+            70: "70 - Anode error",
+            71: "71 - Error de-icing heat exchanger",
+            72: "72 - Low evaporator temperature",
+            73: "73 - High pressure switch triggered",
+            74: "74 - Low pressure switch triggered",
+            75: "Error75",
+            76: "Error76",
+            77: "Error77",
+            78: "Error78",
+            79: "Error79",
+            80: "Error80",
+            81: "Error81",
+            82: "Error82",
+            83: "Error83",
+            84: "Error84",
+            85: "Error85",
+            86: "Error86",
+            87: "Error87",
+            88: "Error88",
+            89: "Error89",
+            90: "Error90",
+            91: "91 - Expansion PCB missing",
+            92: "92 - Backup error",
+            93: "Error93",
+            94: "Error94",
+            95: "95 - Software update error",
+            96: "96 - Damper test error",
+            97: "97 - FC error",
+            98: "98 - T13 and T14 error",
+            99: "99 - Thermal relay and FC error",
+        }
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:alarm-light"
+
+    def translateKey(self, key) -> str:
+        if key in self._alarmTextValues:
+            return self._alarmTextValues[key]
+        return "Unknown alarm"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        if self._alarmHandler.getActiveAlarmCount() == 0:
+            self._attr_native_value = "No Alarm"
+            return
+        # Join the string representation of the active alarms
+        self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))
+
+
 # This sensor is more complex than the others, due to using the values of 3 datapoints.
-class GenvexConnectSensorCTS400AlarmCount(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, alarmHandler: GenvexConnectCTS400AlarmHandler):
+class GenvexConnectSensorCTSAlarmCount(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, alarmHandler: GenvexConnectCTS400AlarmHandler | GenvexConnectCTS602AlarmHandler):
         super().__init__(genvexNabto, "cts400_alarmcount", "cts400_alarmcount", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
