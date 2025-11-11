@@ -207,7 +207,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         alarmHandler._on_change(0, 0)
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.ALARM_CTS602NO1):
         alarmHandler = GenvexConnectCTS602AlarmHandler(genvexNabto)
-        new_entities.append(GenvexConnectSensorCTSAlarm602List(genvexNabto, alarmHandler))
+        new_entities.append(GenvexConnectSensorCTS602AlarmList(genvexNabto, alarmHandler))
         new_entities.append(GenvexConnectSensorCTSAlarmCount(genvexNabto, alarmHandler))
         # Trigger the alarm handler to react on the starting state
         alarmHandler._on_change(0, 0)
