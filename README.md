@@ -19,9 +19,13 @@ To use this integration, an official gateway is required. This can be either a G
 |Nilan CTS602 Light | Yes, nilan gateway    | ✅              | ✅     |
 |Nilan CTS602 Geo   | Yes, nilan gateway    | ✅              |        |
 
+If you have one of the controllers not currently listed as tested, please report if the integration works as expected.
+
 ## Installation (HACS)
 
-The preferred method to install is to use HACS. You need to add this repo https://github.com/superrob/genvex-connect as a custom repo. See https://hacs.xyz/docs/faq/custom_repositories for details.
+The preferred method to install is to use HACS. The repository is part of the default list.
+Go to HACS -> Integrations, search for Genvex Connect and then install.
+Restart your Home Assistant instance to complete installation.
 
 ## Installation (No HACS)
 
