@@ -1,4 +1,6 @@
 # Genvex Connect
+![installation_badge](https://img.shields.io/badge/dynamic/json?color=41BDF5&logo=home-assistant&label=integration%20usage&suffix=%20installs&cacheSeconds=15600&url=https://analytics.home-assistant.io/custom_integrations.json&query=$.genvex_connect.total)
+
 This component integrates Genvex Connect and Nilan Gateway devices directly into Home Assistant.
 It uses the [GenvexNabto](https://github.com/superrob/genvexnabto) library, which manages local communication with the devices. For more technical details about the project, refer to that repository.
 
