@@ -45,9 +45,17 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
             )
         )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_HEATPUMP_ACTIVE):
-        new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_HEATPUMP_ACTIVE, "mdi:engine"))
+        new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_HEATPUMP_ACTIVE, "mdi:heat-pump"))
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_HEATER_ACTIVE):
-        new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_HEATER_ACTIVE, "mdi:radiator"))
+        new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_HEATER_ACTIVE, "mdi:heating-coil"))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.REHEAT_ACTIVE):
+        new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.REHEAT_ACTIVE, "mdi:radiator"))
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_WATER_HEATING):
+        new_entities.append(
+            GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_WATER_HEATING, "mdi:water-thermometer")
+        )
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_ROOM_HEATING):
+        new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_ROOM_HEATING, "mdi:radiator"))
 
     async_add_entities(new_entities)
 

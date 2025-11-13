@@ -47,9 +47,24 @@
       },
       "summer_mode": {
         "name": "Summer mode"
-      },     
+      },    
       "defrost_active": {
         "name": "Defrost active"
+      },
+      "reheat_active": {
+        "name": "Reheat active"
+      },
+      "hps_heatpump_active": {
+        "name": "Heatpump"
+      },
+      "hps_heater_active": {
+        "name": "Heatpump Heating Element"
+      },
+      "hps_water_heating": {
+        "name": "Heatpump Heating Water"
+      },
+      "hps_room_heating": {
+        "name": "Heatpump Heating Room"
       }
     },
     "climate": {
@@ -120,9 +135,6 @@
       },
       "filter_days": {
         "name": "Days since filter change"
-      },
-      "filter_months": {
-        "name": "Months since filter change"
       },
       "filter_days_left": {
         "name": "Days left until filter change"
@@ -237,12 +249,6 @@
       },
       "hps_capacity_actual": {
         "name": "Heatpump Actual Capacity"
-      },
-      "hps_heatpump_active": {
-        "name": "Heatpump"
-      },
-      "hps_heater_active": {
-        "name": "Heatpump Heating Element"
       },
       "hps_temp_after_condenser": {
         "name": "Temperature After Condenser"
