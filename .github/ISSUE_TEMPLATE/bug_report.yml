@@ -23,6 +23,5 @@ body:
   attributes:
     label: Describe the bug
     description: "A clear and concise description of what the bug is. Attaching screenshots can be very helpful."
-    render: bash
   validations:
     required: true
