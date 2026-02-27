@@ -203,6 +203,12 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         new_entities.append(GenvexConnectSensorAlarmCount(genvexNabto, alarmHandler))
         # Trigger the alarm handler to react on the starting state
         alarmHandler._on_change(0, 0)
+    if genvexNabto.providesValue(GenvexNabtoDatapointKey.ALARM_OPTIMA25X):
+        alarmHandler = GenvexConnectOptima25XAlarmHandler(genvexNabto)
+        new_entities.append(GenvexConnectSensorOptima25XAlarmList(genvexNabto, alarmHandler))
+        new_entities.append(GenvexConnectSensorAlarmCount(genvexNabto, alarmHandler))
+        # Trigger the alarm handler to react on the starting state
+        alarmHandler._on_change(0, 0)
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.ALARM_CTS400CRITICAL):
         alarmHandler = GenvexConnectCTS400AlarmHandler(genvexNabto)
         new_entities.append(GenvexConnectSensorCTS400AlarmList(genvexNabto, alarmHandler))
@@ -446,7 +452,74 @@ class GenvexConnectSensorControlState602(GenvexConnectEntityBase, SensorEntity):
         """Fetch new state data for the sensor."""
 
         # Removed redundant code and made it more concise
-        self._attr_native_value = f"state_{self.genvexNabto.getValue(self._valueKey)}"    
+        self._attr_native_value = f"state_{self.genvexNabto.getValue(self._valueKey)}"
+
+
+class GenvexConnectOptima25XAlarmHandler:
+    def __init__(self, genvexNabto) -> None:
+        self.genvexNabto = genvexNabto
+        self.activeAlarms = []
+        self.updateHandlers = []
+        genvexNabto.registerUpdateHandler(GenvexNabtoDatapointKey.ALARM_OPTIMA25X, self._on_change)
+
+    def _on_change(self, _old_value, _new_value):
+        # Recalculate the active alarms
+        alarmBits = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_OPTIMA270_1))
+
+        self.activeAlarms = []
+        for i in range(0, 16):
+            if i & alarmBits:
+                self.activeAlarms.append(pow(2, i))
+            alarmBits >>= 1
+
+        # Trigger an update of any sensors listening on this handler.
+        for updateMethod in self.updateHandlers:
+            updateMethod(0, 0)
+
+    def getActiveAlarmCount(self):
+        return len(self.activeAlarms)
+
+    def getActiveAlarms(self):
+        return self.activeAlarms
+
+    def addUpdateHandler(self, updateMethod: Callable[[int, int], None]):
+        self.updateHandlers.append(updateMethod)
+
+
+class GenvexConnectSensorOptima25XAlarmList(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto, alarmHandler: GenvexConnectOptima25XAlarmHandler):
+        super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
+        self._alarmHandler = alarmHandler
+        self._alarmHandler.addUpdateHandler(self._on_change)
+        self._alarmTextValues = {
+            1: "External stop",
+            2: "Change Filter",
+            4: "High pressure",
+            8: "Frost failure",
+            16: "CommError Panel -> Controller",
+            32: "External filter",
+            64: "Fan speed",
+            128: "Sensor error",
+        }
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:alarm-light"
+
+    def translateKey(self, key) -> str:
+        if key in self._alarmTextValues:
+            return self._alarmTextValues[key]
+        return "Unknown alarm"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        if self._alarmHandler.getActiveAlarmCount() == 0:
+            self._attr_native_value = "No Alarms"
+            return
+        # Join the string representation of the active alarms
+        self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))
+
 
 class GenvexConnectOptima270AlarmHandler:
     def __init__(self, genvexNabto) -> None:
@@ -484,6 +557,7 @@ class GenvexConnectOptima270AlarmHandler:
     def addUpdateHandler(self, updateMethod: Callable[[int, int], None]):
         self.updateHandlers.append(updateMethod)
 
+
 class GenvexConnectSensorOptima270AlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectOptima270AlarmHandler):
         super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
@@ -512,7 +586,7 @@ class GenvexConnectSensorOptima270AlarmList(GenvexConnectEntityBase, SensorEntit
             1048576: "Fire error damper 4",
             2097152: "Fire Box 1 failure",
             4194304: "Fire Box 2 failure",
-            8388608: "Rotor alarm"
+            8388608: "Rotor alarm",
         }
 
     @property
@@ -532,6 +606,7 @@ class GenvexConnectSensorOptima270AlarmList(GenvexConnectEntityBase, SensorEntit
             return
         # Join the string representation of the active alarms
         self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))
+
 
 class GenvexConnectCTS400AlarmHandler:
     def __init__(self, genvexNabto) -> None:
@@ -790,7 +865,16 @@ class GenvexConnectSensorCTS602AlarmList(GenvexConnectEntityBase, SensorEntity):
 
 # This sensor is more complex than the others, due to using the values of 3 datapoints.
 class GenvexConnectSensorAlarmCount(GenvexConnectEntityBase, SensorEntity):
-    def __init__(self, genvexNabto, alarmHandler: GenvexConnectCTS400AlarmHandler | GenvexConnectCTS602AlarmHandler | GenvexConnectOptima270AlarmHandler):
+    def __init__(
+        self,
+        genvexNabto,
+        alarmHandler: (
+            GenvexConnectCTS400AlarmHandler
+            | GenvexConnectCTS602AlarmHandler
+            | GenvexConnectOptima270AlarmHandler
+            | GenvexConnectOptima25XAlarmHandler
+        ),
+    ):
         super().__init__(genvexNabto, "alarmcount", "alarmcount", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
