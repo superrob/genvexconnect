@@ -10,7 +10,7 @@
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/superrob/genvexconnect/issues",
   "requirements": [
-    "genvexnabto==1.4.4"
+    "genvexnabto @ git+https://github.com/superrob/genvexnabto"
   ],
   "version": "1.4.4"  
 }
