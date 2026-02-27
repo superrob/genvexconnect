@@ -494,7 +494,7 @@ class GenvexConnectOptima25XAlarmHandler:
 
 class GenvexConnectSensorOptima25XAlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectOptima25XAlarmHandler):
-        super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
+        super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
         self._alarmTextValues = {
@@ -564,7 +564,7 @@ class GenvexConnectOptima314AlarmHandler:
 
 class GenvexConnectSensorOptima314AlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectOptima314AlarmHandler):
-        super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
+        super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
         self._alarmTextValues = {
@@ -655,7 +655,7 @@ class GenvexConnectOptima270AlarmHandler:
 
 class GenvexConnectSensorOptima270AlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectOptima270AlarmHandler):
-        super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
+        super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
         self._alarmTextValues = {
@@ -749,7 +749,7 @@ class GenvexConnectCTS400AlarmHandler:
 # This sensor is more complex than the others, due to using the values of 3 datapoints.
 class GenvexConnectSensorCTS400AlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectCTS400AlarmHandler):
-        super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
+        super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
         self._alarmTextValues = {
@@ -834,7 +834,7 @@ class GenvexConnectCTS602AlarmHandler:
 
 class GenvexConnectSensorCTS602AlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectCTS602AlarmHandler):
-        super().__init__(genvexNabto, "alarmlist", "alarmlist", False)
+        super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
         self._alarmTextValues = {
@@ -971,7 +971,7 @@ class GenvexConnectSensorAlarmCount(GenvexConnectEntityBase, SensorEntity):
             | GenvexConnectOptima314AlarmHandler
         ),
     ):
-        super().__init__(genvexNabto, "alarmcount", "alarmcount", False)
+        super().__init__(genvexNabto, "cts400_alarmcount", "cts400_alarmcount", False)
         self._alarmHandler = alarmHandler
         self._alarmHandler.addUpdateHandler(self._on_change)
 

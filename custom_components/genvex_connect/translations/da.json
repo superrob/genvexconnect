@@ -154,10 +154,10 @@
       "reheat_pwm": {
         "name": "Eftervarme PWM"
       },
-      "alarmlist": {
+      "cts400_alarmlist": {
         "name": "Aktiv Alarm liste"
       },
-      "alarmcount": {
+      "cts400_alarmcount": {
         "name": "Aktiv Alarm antal"
       },
       "controlstate_602": {
