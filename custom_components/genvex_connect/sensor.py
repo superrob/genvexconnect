@@ -526,6 +526,7 @@ class GenvexConnectSensorOptima25XAlarmList(GenvexConnectEntityBase, SensorEntit
         # Join the string representation of the active alarms
         self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))
 
+
 class GenvexConnectOptima314AlarmHandler:
     def __init__(self, genvexNabto) -> None:
         self.genvexNabto = genvexNabto
@@ -562,6 +563,7 @@ class GenvexConnectOptima314AlarmHandler:
     def addUpdateHandler(self, updateMethod: Callable[[int, int], None]):
         self.updateHandlers.append(updateMethod)
 
+
 class GenvexConnectSensorOptima314AlarmList(GenvexConnectEntityBase, SensorEntity):
     def __init__(self, genvexNabto, alarmHandler: GenvexConnectOptima314AlarmHandler):
         super().__init__(genvexNabto, "cts400_alarmlist", "cts400_alarmlist", False)
@@ -595,7 +597,7 @@ class GenvexConnectSensorOptima314AlarmList(GenvexConnectEntityBase, SensorEntit
             134217728: "Flow temperature error",
             268435456: "Return temperature error",
             536870912: "T10 Sensor error",
-            1073741824: "T11 Sensor error"
+            1073741824: "T11 Sensor error",
         }
 
     @property
@@ -614,7 +616,8 @@ class GenvexConnectSensorOptima314AlarmList(GenvexConnectEntityBase, SensorEntit
             self._attr_native_value = "No Alarms"
             return
         # Join the string representation of the active alarms
-        self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))        
+        self._attr_native_value = ", ".join(map(lambda x: self.translateKey(x), self._alarmHandler.getActiveAlarms()))
+
 
 class GenvexConnectOptima270AlarmHandler:
     def __init__(self, genvexNabto) -> None:
