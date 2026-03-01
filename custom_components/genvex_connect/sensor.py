@@ -470,7 +470,7 @@ class GenvexConnectOptima25XAlarmHandler:
 
     def _on_change(self, _old_value, _new_value):
         # Recalculate the active alarms
-        alarmBits = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_OPTIMA270_1))
+        alarmBits = int(self.genvexNabto.getValue(GenvexNabtoDatapointKey.ALARM_OPTIMA25X))
 
         self.activeAlarms = []
         for i in range(0, 16):
