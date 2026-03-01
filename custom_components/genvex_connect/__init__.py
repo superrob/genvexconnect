@@ -46,6 +46,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     await genvexNabto.waitForConnection()
     _LOGGER.info(f"Controller model: {genvexNabto._device_model}")
     if genvexNabto._connection_error is not False:
+        genvexNabto.stopListening()
         if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.AUTHENTICATION_ERROR:
             raise ConfigEntryAuthFailed(f"Credentials expired for {deviceID}")
         if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.BUSY:
