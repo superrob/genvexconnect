@@ -7,6 +7,7 @@
     "error": {
       "cannot_connect": "Kunne ikke forbinde til enheden",
       "invalid_auth": "Ugyldig email, tjek at din email er indtastet præcis som i Genvex Connect appen. Tjek selv om du har lavet store og små bogstaver. Den skal være 100% ens.",
+      "busy": "Enheden indikerede at den er travl. Prøv igen senere.",
       "unknown": "Ukendt fejl"
     },
     "step": {

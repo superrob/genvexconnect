@@ -6,7 +6,7 @@ import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
-from homeassistant.exceptions import ConfigEntryNotReady, ConfigEntryAuthFailed
+from homeassistant.exceptions import ConfigEntryNotReady, ConfigEntryAuthFailed, ConfigEntryError
 
 from genvexnabto import GenvexNabto, GenvexNabtoConnectionErrorType
 from .const import DOMAIN, CONF_DEVICE_ID, CONF_AUTHENTICATED_EMAIL, CONF_DEVICE_IP, CONF_DEVICE_PORT
@@ -48,12 +48,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if genvexNabto._connection_error is not False:
         if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.AUTHENTICATION_ERROR:
             raise ConfigEntryAuthFailed(f"Credentials expired for {deviceID}")
+        if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.BUSY:
+            raise ConfigEntryNotReady(f"The device {deviceID} indicated that it is busy.")
         if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.TIMEOUT:
             raise ConfigEntryNotReady(f"Timed out while trying to connect to {deviceID}")
         if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL:
             raise ConfigEntryNotReady(
                 f"Timed out while trying to get data from {deviceID} did not correctly load a model for Model no: {genvexNabto._device_model}, device number: {genvexNabto._device_number} and slavedevice number: {genvexNabto._slavedevice_number}"
             )
+        if genvexNabto._connection_error is GenvexNabtoConnectionErrorType.UNKNOWN_ERROR:
+            raise ConfigEntryError(f"Unknown error occurred while trying to connect to {deviceID}")
 
     dataResult = await genvexNabto.waitForData()
     if dataResult is False:  # Waits for GenvexNabto to get fresh data

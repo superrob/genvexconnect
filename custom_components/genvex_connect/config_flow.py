@@ -82,7 +82,7 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
 
         return self.async_show_email_form()
 
-    def async_show_email_form(self, invalidEmail=False, connectionTimeout=False):
+    def async_show_email_form(self, invalidEmail=False, connectionTimeout=False, busy=False):
         """Show the email form."""
         data_schema = {
             vol.Required(
@@ -95,6 +95,8 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
             errors["base"] = "invalid_auth"
         if connectionTimeout:
             errors["base"] = "cannot_connect"
+        if busy:
+            errors["base"] = "busy"
 
         return self.async_show_form(step_id="email", data_schema=vol.Schema(data_schema), errors=errors)
 
@@ -115,8 +117,10 @@ class ConfigFlow(ConfigFlow, domain=DOMAIN):
                 return await self.async_step_email(user_input)
             if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.TIMEOUT:
                 return self.async_show_email_form(connectionTimeout=True)
+            if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.BUSY:
+                return self.async_show_email_form(busy=True)
             if self._genvexNabto._connection_error is GenvexNabtoConnectionErrorType.UNSUPPORTED_MODEL:
-                _LOGGER.warn(
+                _LOGGER.warning(
                     f"Tried to connect to device with unsupported model. Model no: {self._genvexNabto._device_model}, device number: {self._genvexNabto._device_number}, slavedevice number: {self._genvexNabto._slavedevice_number}, and slavedevice model: {self._genvexNabto._slavedevice_model}"
                 )
                 return self.async_abort(reason="unsupported_model")
