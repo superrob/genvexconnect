@@ -1008,7 +1008,7 @@ class GenvexConnectSensorOptimaBypassOffset(GenvexConnectEntityBase, SensorEntit
     @property
     def icon(self):
         """Return the icon of the sensor."""
-        return "mdi:temperature"
+        return "mdi:home-thermometer"
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
@@ -1030,7 +1030,7 @@ class GenvexConnectSensorOptimaBypassTurnoff(GenvexConnectEntityBase, SensorEnti
     @property
     def icon(self):
         """Return the icon of the sensor."""
-        return "mdi:temperature"
+        return "mdi:snowflake-thermometer"
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
@@ -1055,7 +1055,7 @@ class GenvexConnectSensorOptimaBypassForceTemp(GenvexConnectEntityBase, SensorEn
     @property
     def icon(self):
         """Return the icon of the sensor."""
-        return "mdi:temperature"
+        return "mdi:thermometer-plus"
 
     def update(self) -> None:
         """Fetch new state data for the sensor."""
