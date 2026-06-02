@@ -15,6 +15,12 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     new_entities = []
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_OPENOFFSET))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_TURNOFF):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_TURNOFF))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_FORCE_SPEED):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_FORCE_SPEED))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_FORCE_TEMP):
+        new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.BYPASS_FORCE_TEMP))
     # Air supply level sliders
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1):
         new_entities.append(GenvexConnectNumber(genvexNabto, GenvexNabtoSetpointKey.SUPPLY_AIR_LEVEL1, defaultEnabled=False))

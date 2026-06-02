@@ -280,7 +280,16 @@
       },
       "centralheat_temp_return": {
         "name": "Central Heating Return Temperature"
-      }     
+      },      
+      "diag_bypass_openoffset": {
+        "name": "Bypass opens at inside temp"
+      },   
+      "diag_bypass_turnoff": {
+        "name": "Bypass requires min outside temp"
+      },
+      "diag_bypass_force_temp": {
+        "name": "Bypass forced speed at inside temp"
+      }
     },
     "switch": {
       "humidity_control": {
@@ -374,7 +383,16 @@
         "name": "Temperature target"
       },
       "bypass_openoffset": {
-        "name": "Bypass offset"
+        "name": "Bypass open offset"
+      },
+      "bypass_turnoff": {
+        "name": "Bypass outside min offset"
+      },
+      "bypass_force_speed": {
+        "name": "Bypass forced speed"
+      },
+      "bypass_force_temp": {
+        "name": "Bypass forced temp offset"
       },
       "supply_air_level1": {
         "name": "Supply air - Level 1"

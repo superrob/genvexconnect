@@ -280,7 +280,16 @@
       },
       "centralheat_temp_return": {
         "name": "Varmekeds Retur Temperatur"
-      } 
+      },            
+      "diag_bypass_openoffset": {
+        "name": "Bypass åbner ved indendørs temperatur"
+      },   
+      "diag_bypass_turnoff": {
+        "name": "Bypass kræver min udendørs temperatur"
+      },
+      "diag_bypass_force_temp": {
+        "name": "Bypass tvunget hastighed ved indendørs temperatur"
+      }
     }, 
     "switch": {
       "humidity_control": {
@@ -374,7 +383,16 @@
         "name": "Temperatur mål"
       },      
       "bypass_openoffset": {
-        "name": "Bypass offset"
+        "name": "Bypass åben offset"
+      },
+      "bypass_turnoff": {
+        "name": "Bypass udenfor min offset"
+      },
+      "bypass_force_speed": {
+        "name": "Bypass tvunget hastighed"
+      },
+      "bypass_force_temp": {
+        "name": "Bypass tvunget temp offset"
       },
       "supply_air_level1": {
         "name": "Tilluft - Level 1"

@@ -7,7 +7,7 @@ from homeassistant.components.sensor import (
     SensorEntity,
     SensorStateClass,
 )
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, EntityCategory
 from genvexnabto import GenvexNabto, GenvexNabtoDatapointKey, GenvexNabtoSetpointKey
 from .entity import GenvexConnectEntityBase
 
@@ -298,6 +298,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 deviceClass=SensorDeviceClass.TEMPERATURE,
             )
         )
+
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET):
+        new_entities.append(GenvexConnectSensorOptimaBypassOffset(genvexNabto))
+        if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_FORCE_TEMP):
+            new_entities.append(GenvexConnectSensorOptimaBypassForceTemp(genvexNabto))
+    if genvexNabto.providesValue(GenvexNabtoSetpointKey.BYPASS_TURNOFF):
+        new_entities.append(GenvexConnectSensorOptimaBypassTurnoff(genvexNabto))
 
     async_add_entities(new_entities)
 
@@ -986,3 +993,74 @@ class GenvexConnectSensorAlarmCount(GenvexConnectEntityBase, SensorEntity):
     def update(self) -> None:
         """Fetch new state data for the sensor."""
         self._attr_native_value = self._alarmHandler.getActiveAlarmCount()
+
+
+class GenvexConnectSensorOptimaBypassOffset(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto):
+        super().__init__(genvexNabto, "diag_bypass_openoffset", "diag_bypass_openoffset", False)
+        self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_device_class = SensorDeviceClass.TEMPERATURE
+        self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+        self._attr_entity_category = EntityCategory.DIAGNOSTIC
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.TEMP_SETPOINT, self._on_change)
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:temperature"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = self.genvexNabto.getValue(GenvexNabtoSetpointKey.TEMP_SETPOINT) + self.genvexNabto.getValue(
+            GenvexNabtoSetpointKey.BYPASS_OPENOFFSET
+        )
+
+
+class GenvexConnectSensorOptimaBypassTurnoff(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto):
+        super().__init__(genvexNabto, "diag_bypass_turnoff", "diag_bypass_turnoff", False)
+        self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_device_class = SensorDeviceClass.TEMPERATURE
+        self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+        self._attr_entity_category = EntityCategory.DIAGNOSTIC
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.BYPASS_TURNOFF, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.TEMP_SETPOINT, self._on_change)
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:temperature"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        turnoff_value = self.genvexNabto.getValue(GenvexNabtoSetpointKey.BYPASS_TURNOFF)
+        if turnoff_value == 0.0:
+            self._attr_native_value = -60
+        else:
+            self._attr_native_value = self.genvexNabto.getValue(GenvexNabtoSetpointKey.TEMP_SETPOINT) - turnoff_value
+
+
+class GenvexConnectSensorOptimaBypassForceTemp(GenvexConnectEntityBase, SensorEntity):
+    def __init__(self, genvexNabto):
+        super().__init__(genvexNabto, "diag_bypass_force_temp", "diag_bypass_force_temp", False)
+        self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_device_class = SensorDeviceClass.TEMPERATURE
+        self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+        self._attr_entity_category = EntityCategory.DIAGNOSTIC
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.BYPASS_FORCE_TEMP, self._on_change)
+        genvexNabto.registerUpdateHandler(GenvexNabtoSetpointKey.TEMP_SETPOINT, self._on_change)
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        return "mdi:temperature"
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor."""
+        self._attr_native_value = (
+            self.genvexNabto.getValue(GenvexNabtoSetpointKey.TEMP_SETPOINT)
+            + self.genvexNabto.getValue(GenvexNabtoSetpointKey.BYPASS_OPENOFFSET)
+            + self.genvexNabto.getValue(GenvexNabtoSetpointKey.BYPASS_FORCE_TEMP)
+        )
