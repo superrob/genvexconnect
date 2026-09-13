@@ -74,13 +74,15 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
     @property
     def hvac_modes(self):
         if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
-            return [HVACMode.AUTO, HVACMode.COOL, HVACMode.HEAT]
+            return [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.AUTO]
         return [HVACMode.AUTO]
 
     @property
     def hvac_mode(self):
         if self.genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET):
             current = self.genvexNabto.getValue(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET)
+            if current == 0:
+                return HVACMode.OFF
             if current == 1:
                 return HVACMode.HEAT
             elif current == 2:
@@ -94,6 +96,8 @@ class GenvexConnectClimate(GenvexConnectEntityBase, ClimateEntity):
                 value = 2
             elif _hvac_mode == HVACMode.HEAT:
                 value = 1
+            elif _hvac_mode == HVACMode.OFF:
+                value = 0
             self.genvexNabto.setSetpoint(GenvexNabtoSetpointKey.CTS602_CONTROL_MODE_SET, value)
 
     @property
