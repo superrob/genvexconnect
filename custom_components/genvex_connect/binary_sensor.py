@@ -42,6 +42,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 genvexNabto,
                 GenvexNabtoDatapointKey.SUMMER_MODE,
                 "mdi:sun-snowflake-variant",
+                INVERTED=True
             )
         )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_HEATPUMP_ACTIVE):
