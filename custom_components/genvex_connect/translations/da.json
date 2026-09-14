@@ -427,9 +427,6 @@
       "hotwater_boosttemp": {
         "name": "Varmtvands Elpatron maks temperatur"
       },
-      "filter_days_left": {
-        "name": "Dage per filter"
-      },
       "supplyair_min_temp_summer": {
         "name": "Sommer min tilluft temperatur"
       },
@@ -438,6 +435,9 @@
       },
       "cooling_temperature": {
         "name": "Nedlølning offset"
+      },
+      "filter_days_setting": {
+        "name": "Dage mellem filter skift"
       },
       "filter_months_setting": {
         "name": "Måneder mellem filterskift"

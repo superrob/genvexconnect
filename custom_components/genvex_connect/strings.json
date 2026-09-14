@@ -427,9 +427,6 @@
       "hotwater_boosttemp": {
         "name": "Hotwater Booster max temperature"
       },
-      "filter_days_left": {
-        "name": "Days per filter"
-      },
       "supplyair_min_temp_summer": {
         "name": "Summer min supply air temperature"
       },
@@ -439,8 +436,11 @@
       "cooling_temperature": {
         "name": "Cooling offset"
       },
+      "filter_days_setting": {
+        "name": "Days between filter change"
+      },
       "filter_months_setting": {
-        "name": "Months between filterchange"
+        "name": "Months between filter change"
       },
       "centralheat_supply_min": {
         "name": "Central heating min temperature"
