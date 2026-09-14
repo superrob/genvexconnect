@@ -376,6 +376,23 @@
           "always_heating": "Altid varme",
           "heating_when_low": "Varme når rum temperatur er lav"
         }
+      },
+      "cts400_humidity_low_level": {
+        "name": "Lav luftfugtighed trin",
+        "state": {
+          "0": "Niveau 0",
+          "1": "Niveau 1",
+          "2": "Niveau 2",
+          "3": "Niveau 3"
+        }
+      },
+      "cts400_humidity_high_level": {
+        "name": "Høj luftfugtighed trin",
+        "state": {
+          "2": "Niveau 2",
+          "3": "Niveau 3",
+          "4": "Niveau 4"
+        }
       }
     },
     "number": {
@@ -447,6 +464,12 @@
       },
       "centralheat_supply_max": {
         "name": "Varmekreds max temperatur"
+      },
+      "cts400_humidity_low_level": {
+        "name": "Lav luftfugtighed %"
+      },
+      "cts400_humidity_high_max_time": {
+        "name": "Høj luftfugtighed trin timeout"
       }
     }
   }

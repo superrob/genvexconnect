@@ -376,6 +376,23 @@
           "always_heating": "Always heating",
           "heating_when_low": "Heating when room temperature low"
         }
+      },
+      "cts400_humidity_low_level": {
+        "name": "Low humidity fan level",
+        "state": {
+          "0": "Level 0",
+          "1": "Level 1",
+          "2": "Level 2",
+          "3": "Level 3"
+        }
+      },
+      "cts400_humidity_high_level": {
+        "name": "High humidity fan level",
+        "state": {
+          "2": "Level 2",
+          "3": "Level 3",
+          "4": "Level 4"
+        }
       }
     },
     "number": {
@@ -447,6 +464,12 @@
       },
       "centralheat_supply_max": {
         "name": "Central heating max temperature"
+      },
+      "cts400_humidity_low_level": {
+        "name": "Low humidity %"
+      },
+      "cts400_humidity_high_max_time": {
+        "name": "High humidity level timeout"
       }
     }
   }
