@@ -32,7 +32,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                     "sunday",
                 ],
                 "mdi:bacteria",
-                category=EntityCategory.CONFIG
+                category=EntityCategory.CONFIG,
             )
         )
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.COOLING_PRIORITY):
@@ -73,23 +73,39 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         )
 
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS400_HUMIDITY_LOW_STEP):
-            new_entities.append(
-                GenvexConnectSelectDefinedValues(
-                    genvexNabto, GenvexNabtoSetpointKey.CTS400_HUMIDITY_LOW_STEP, {0: "0", 1: "1", 2: "2", 3: "3"}, "mdi:fan", category=EntityCategory.CONFIG
-                )
+        new_entities.append(
+            GenvexConnectSelectDefinedValues(
+                genvexNabto,
+                GenvexNabtoSetpointKey.CTS400_HUMIDITY_LOW_STEP,
+                {0: "0", 1: "1", 2: "2", 3: "3"},
+                "mdi:fan",
+                category=EntityCategory.CONFIG,
             )
+        )
     if genvexNabto.providesValue(GenvexNabtoSetpointKey.CTS400_HUMIDITY_HIGH_STEP):
-            new_entities.append(
-                GenvexConnectSelectDefinedValues(
-                    genvexNabto, GenvexNabtoSetpointKey.CTS400_HUMIDITY_HIGH_STEP, {2: "2", 3: "3", 4: "4"}, "mdi:fan", category=EntityCategory.CONFIG
-                )
+        new_entities.append(
+            GenvexConnectSelectDefinedValues(
+                genvexNabto,
+                GenvexNabtoSetpointKey.CTS400_HUMIDITY_HIGH_STEP,
+                {2: "2", 3: "3", 4: "4"},
+                "mdi:fan",
+                category=EntityCategory.CONFIG,
             )
-            
+        )
+
     async_add_entities(new_entities)
 
 
 class GenvexConnectSelectGeneric(GenvexConnectEntityBase, SelectEntity):
-    def __init__(self, genvexNabto, valueKey, options:List[str], icon:str, category:EntityCategory|None=None, optionValues:List[int]|bool=False):
+    def __init__(
+        self,
+        genvexNabto,
+        valueKey,
+        options: List[str],
+        icon: str,
+        category: EntityCategory | None = None,
+        optionValues: List[int] | bool = False,
+    ):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._attr_options = options
@@ -117,8 +133,9 @@ class GenvexConnectSelectGeneric(GenvexConnectEntityBase, SelectEntity):
             chosenValue = self._attr_options.index(option)
         self.genvexNabto.setSetpoint(self._valueKey, chosenValue)
 
+
 class GenvexConnectSelectDefinedValues(GenvexConnectEntityBase, SelectEntity):
-    def __init__(self, genvexNabto, valueKey, options:Dict[int, str], icon:str, category:EntityCategory|None=None):
+    def __init__(self, genvexNabto, valueKey, options: Dict[int, str], icon: str, category: EntityCategory | None = None):
         super().__init__(genvexNabto, valueKey, valueKey)
         self._valueKey = valueKey
         self._options_keyed = options
@@ -136,7 +153,7 @@ class GenvexConnectSelectDefinedValues(GenvexConnectEntityBase, SelectEntity):
         """Return the selected entity option to represent the entity state."""
         currentValue = int(self.genvexNabto.getValue(self._valueKey))
         if currentValue not in self._options_keyed:
-            return self._attr_options[0]        
+            return self._attr_options[0]
         return self._attr_options[list(self._options_keyed.keys()).index(currentValue)]
 
     async def async_select_option(self, option: str) -> None:

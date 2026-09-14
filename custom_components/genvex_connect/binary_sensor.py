@@ -38,12 +38,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.SUMMER_MODE):
         new_entities.append(
-            GenvexConnectBinarySensorGeneric(
-                genvexNabto,
-                GenvexNabtoDatapointKey.SUMMER_MODE,
-                "mdi:sun-snowflake-variant",
-                inverted=True
-            )
+            GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.SUMMER_MODE, "mdi:sun-snowflake-variant", inverted=True)
         )
     if genvexNabto.providesValue(GenvexNabtoDatapointKey.HPS_HEATPUMP_ACTIVE):
         new_entities.append(GenvexConnectBinarySensorGeneric(genvexNabto, GenvexNabtoDatapointKey.HPS_HEATPUMP_ACTIVE, "mdi:heat-pump"))
